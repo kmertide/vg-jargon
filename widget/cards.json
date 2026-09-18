@@ -1,17 +1,371 @@
 {
   "version": "1.0.0",
-  "generated": "2026-04-10T23:14:44.157347",
-  "card_count": 160,
+  "generated": "2026-09-18T14:35:51.805046",
+  "card_count": 187,
   "decks": [
-    "vg-jargon::wiki::snarls",
     "vg-jargon::algorithms",
     "vg-jargon::data_structures",
-    "vg-jargon::wiki::file-types",
-    "vg-jargon::interfaces",
     "vg-jargon::wiki::giraffe",
-    "vg-jargon::wiki::index-types"
+    "vg-jargon::releases::v1.77.0",
+    "vg-jargon::wiki::file-types",
+    "vg-jargon::wiki::index-types",
+    "vg-jargon::interfaces",
+    "vg-jargon::wiki::snarls"
   ],
   "cards": [
+    {
+      "id": "rel-001",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "deprecated"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What commands are marked as deprecated in vg v1.77.0?",
+      "back": "`vg mcmc` and `vg genotype` are marked as deprecated.\n"
+    },
+    {
+      "id": "rel-002",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-call"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How does `vg call` behave in vg v1.77.0?",
+      "back": "`vg call` will call against a non-reference path if you explicitly ask.\n"
+    },
+    {
+      "id": "rel-003",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-augment"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What error does `vg augment -i` produce in vg v1.77.0?",
+      "back": "`vg augment -i` errors when it is told to embed a path without a name.\n"
+    },
+    {
+      "id": "rel-004",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-snarls"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What improvements were made to `vg snarls --traversals` in vg v1.77.0?",
+      "back": "`vg snarls --traversals` related helptext improved and useful errors added.\n"
+    },
+    {
+      "id": "rel-005",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-snarls"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What happened to `vg snarls --pathnames` in vg v1.77.0?",
+      "back": "`vg snarls --pathnames` option removed (didn't really work).\n"
+    },
+    {
+      "id": "rel-006",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-deconstruct"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How are snarl ids in vg deconstruct vcfs consistent in vg v1.77.0?",
+      "back": "Snarl ids in vg deconstruct vcfs now consistent with vg call (forward on reference).\n"
+    },
+    {
+      "id": "rel-007",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "gref-segments"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What changes were made to the gref segments algorithm in vg v1.77.0?",
+      "back": "Make gref segments table more BED-like, and easier to filter by snarl level.\nSimplify gref segments algorithm; make it greedier on length and only consider things well-anchored to a reference.\n"
+    },
+    {
+      "id": "rel-008",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-deconstruct",
+        "vg-call"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What new option was added to `vg deconstruct` and `vg call` in vg v1.77.0?",
+      "back": "`vg deconstruct -L` option ported to `vg call` to cluster big alleles. Both now support deletions. Remains experimental.\n"
+    },
+    {
+      "id": "rel-009",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "removed"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What was removed in vg v1.77.0?",
+      "back": "`vg chain` and associated iterator used only in testing were removed.\n"
+    },
+    {
+      "id": "rel-010",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "manpage-generator"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What changes were made to the manpage generator in vg v1.77.0?",
+      "back": "Manpage generator is required to include non-deprecated subcommands (and is updated to do so).\n"
+    },
+    {
+      "id": "rel-011",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "contributing"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "What new file is included in vg v1.77.0?",
+      "back": "A `CONTRIBUTING.md` file was added.\n"
+    },
+    {
+      "id": "rel-012",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-map"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What was clarified in vg v1.77.0 regarding `vg map --gbwt-name`?",
+      "back": "`vg map --gbwt-name` option was explained (resolves #1429).\n"
+    },
+    {
+      "id": "rel-013",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "What optimizations were made to `vg giraffe` chaining modes in vg v1.77.0?",
+      "back": "`vg giraffe` chaining mode (`-b hifi`, `-b r10`, `-b chaining-sr`) memory & speed optimizations; no effect on output.\n"
+    },
+    {
+      "id": "rel-014",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "gbz"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What GBZ version support was added in vg v1.77.0?",
+      "back": "Support for GBZ version 3 (vg still writes version 2 by default).\n"
+    },
+    {
+      "id": "rel-015",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-gbwt"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What new option was added to `vg gbwt` in vg v1.77.0?",
+      "back": "`vg gbwt` option `--gbz-version` for selecting the version of output GBZ.\n"
+    },
+    {
+      "id": "rel-016",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-construct"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What change was made to `vg construct -S` in vg v1.77.0?",
+      "back": "`vg construct -S` will automatically turn on `-f` (resolves #2932).\n"
+    },
+    {
+      "id": "rel-017",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "How does `vg giraffe --max-chains-per-tree` work in vg v1.77.0?",
+      "back": "`vg giraffe --max-chains-per-tree` works as documented (bugfix).\n"
+    },
+    {
+      "id": "rel-018",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What change was made to `vg giraffe --min-chains` in vg v1.77.0?",
+      "back": "`vg giraffe --min-chains` is now `--target-alignment-attempts` and has better documentation.\n"
+    },
+    {
+      "id": "rel-019",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-surject"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What requirement was added to `vg surject` in vg v1.77.0?",
+      "back": "`vg surject` now requires either `-i`/`--interleaved` or `-U`/`--force-unpaired` if it thinks the input smells like paired-end data.\n"
+    },
+    {
+      "id": "rel-020",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "How does `vg giraffe` now use the GAM fragment length distribution in vg v1.77.0?",
+      "back": "`vg giraffe` now uses the GAM fragment length distribution built-in field, like `vg map`, instead of a `\"fragment_length_distribution\"` annotation.\n"
+    },
+    {
+      "id": "rel-021",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "dozeu"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "How does `dozeu` behave in vg v1.77.0?",
+      "back": "`dozeu` respects X-drop definition more strictly.\n"
+    },
+    {
+      "id": "rel-022",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-gamsort"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What change was made to `vg gamsort` in vg v1.77.0?",
+      "back": "`vg gamsort` no longer crashes with very large GAM files.\n"
+    },
+    {
+      "id": "rel-023",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-gamsort"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How does `vg gamsort` sort GAF in vg v1.77.0?",
+      "back": "`vg gamsort` sorts GAF by GBWT node id intervals for better compatibility with GAF-base.\n"
+    },
+    {
+      "id": "rel-024",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-gamsort"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What new option was added to `vg gamsort` in vg v1.77.0?",
+      "back": "`vg gamsort` option `--two-merge-rounds` to guarantee at most two rounds of merges when sorting GAF.\n"
+    },
+    {
+      "id": "rel-025",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe",
+        "vg-surject"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How does `vg giraffe` and `vg surject` handle paired-end reads in vg v1.77.0?",
+      "back": "`vg giraffe` and `vg surject` now surject paired-end reads with the same code.\n"
+    },
+    {
+      "id": "rel-026",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "submodules"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What change was made to submodule URLs in vg v1.77.0?",
+      "back": "`cairo` and `pixman` submodules pulled from `https://gitlab.freedesktop.org` instead of `git://anongit.freedesktop.org` since the latter seems to have broken.\n"
+    },
+    {
+      "id": "rel-027",
+      "deck": "vg-jargon::releases::v1.77.0",
+      "tags": [
+        "release",
+        "v1.77.0",
+        "vg-giraffe"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "How does `vg giraffe` chaining mode handle multiplicities in vg v1.77.0?",
+      "back": "Avoid underflowing multiplicities in `vg giraffe` chaining mode (caused erroneous MAPQ 0).\n"
+    },
     {
       "id": "gbz-001",
       "deck": "vg-jargon::data_structures",
