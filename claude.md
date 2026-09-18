@@ -67,11 +67,7 @@ Cards are derived from these repos (cloned in `../vgteam_repos/`):
 
 | Repo | Content to Extract |
 |------|-------------------|
-| `vg` | Commands, algorithms, main tool |
-| `libhandlegraph` | Interface definitions |
-| `libbdsg` | Data structure implementations |
 | `vg.wiki` | Conceptual documentation |
-| `xg` | XG index internals |
 
 ## Generating Output
 
@@ -126,8 +122,7 @@ Features:
 
 ## TODO
 
-- [ ] Complete SwiftUI widget implementation
 - [ ] Add more cards from wiki pages
 - [ ] Extract method signatures from libhandlegraph headers
 - [ ] Add cards for vg CLI commands
-- [ ] Create extract_from_repos.py script
+- [ ] Create release-notes staging pipeline
