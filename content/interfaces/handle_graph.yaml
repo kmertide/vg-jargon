@@ -1,0 +1,78 @@
+deck: vg-jargon::interfaces
+description: Core HandleGraph interface methods
+source_repo: libhandlegraph
+
+cards:
+  - id: hg-001
+    type: basic
+    front: What is a HandleGraph?
+    back: |
+      The base interface for all graph implementations in vg.
+      Provides read-only access to nodes and edges via opaque "handles".
+    tags: [interface, core, beginner]
+    source: libhandlegraph/handle_graph.hpp
+    difficulty: beginner
+
+  - id: hg-002
+    type: basic
+    front: What is a "handle" in HandleGraph?
+    back: |
+      An opaque reference to a node orientation (forward or reverse).
+      Encodes both node ID and strand in a single 64-bit value.
+    tags: [interface, core, handle]
+    source: libhandlegraph/handle_graph.hpp
+    difficulty: beginner
+
+  - id: hg-003
+    type: basic
+    front: "Method: get the sequence of a node from its handle?"
+    back: |
+      ```cpp
+      std::string get_sequence(const handle_t& handle) const
+      ```
+      Returns the sequence in the orientation of the handle.
+    tags: [interface, method, sequence]
+    source: libhandlegraph/handle_graph.hpp
+    difficulty: intermediate
+
+  - id: hg-004
+    type: basic
+    front: "Method: iterate over all edges from a handle?"
+    back: |
+      ```cpp
+      bool follow_edges(const handle_t& handle, bool go_left,
+                        const std::function<bool(const handle_t&)>& iteratee) const
+      ```
+      Calls iteratee for each neighbor. go_left=true for incoming edges.
+    tags: [interface, method, edges, traversal]
+    source: libhandlegraph/handle_graph.hpp
+    difficulty: intermediate
+
+  - id: hg-005
+    type: cloze
+    text: |
+      To get a handle from a node ID: {{c1::get_handle(id, is_reverse)}}
+      To get the node ID from a handle: {{c2::get_id(handle)}}
+    tags: [interface, method, conversion]
+    difficulty: beginner
+
+  - id: hg-006
+    type: basic
+    front: "Method: get the length of a node?"
+    back: |
+      ```cpp
+      size_t get_length(const handle_t& handle) const
+      ```
+      Returns the length of the node's sequence.
+    tags: [interface, method, sequence]
+    source: libhandlegraph/handle_graph.hpp
+    difficulty: beginner
+
+  - id: hg-007
+    type: reverse
+    front: What does `flip(handle)` return?
+    back: |
+      The handle to the same node but in the opposite orientation.
+      `flip(flip(h)) == h` is always true.
+    tags: [interface, method, handle]
+    difficulty: beginner

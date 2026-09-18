@@ -1,0 +1,114 @@
+deck: vg-jargon::wiki::snarls
+description: Snarl and chain theory
+source_repo: vg.wiki
+cards:
+- id: snl-001
+  type: basic
+  front: What is a snarl?
+  back: A topological motif where two or more alternative paths exist between two
+    boundary nodes. A generalization of a 'bubble'. Represents variable sequence flanked
+    by conserved sequence.
+  tags:
+  - snarl
+  - theory
+  - definition
+  difficulty: intermediate
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-002
+  type: basic
+  front: What are the two properties that define a snarl?
+  back: '1. Separable: splitting boundary nodes disconnects the snarl from the rest
+    of the graph
+
+    2. Minimal: no internal node is separable with the boundary nodes'
+  tags:
+  - snarl
+  - theory
+  - definition
+  difficulty: advanced
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-003
+  type: basic
+  front: What is a chain in the snarl decomposition?
+  back: A sequence of consecutive snarls with shared boundary nodes between them.
+    For example, if snarl 1-4 and snarl 4-6 share node 4, they form chain 1-6.
+  tags:
+  - chain
+  - snarl
+  - theory
+  difficulty: intermediate
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-004
+  type: basic
+  front: What are the boundary nodes of a snarl?
+  back: The two nodes (x and y) that delimit a snarl's subgraph. They are the entry
+    and exit points of the variable region.
+  tags:
+  - snarl
+  - theory
+  difficulty: beginner
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-005
+  type: basic
+  front: How is an SNP represented in a variation graph?
+  back: Two allele nodes (e.g., nodes 2 and 3) connected between two flanking conserved
+    nodes (e.g., 1 and 4). Forms a simple snarl.
+  tags:
+  - snarl
+  - snp
+  - variants
+  difficulty: beginner
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-006
+  type: basic
+  front: How is an indel represented in a variation graph?
+  back: 'Insertion: a node for inserted sequence between boundary nodes.
+
+    Deletion: an edge bypassing the deleted sequence node.'
+  tags:
+  - snarl
+  - indel
+  - variants
+  difficulty: beginner
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-007
+  type: basic
+  front: What is the snarl tree hierarchy (top to bottom)?
+  back: '1. Root (contains entire graph)
+
+    2. Chains (sequences of connected snarls)
+
+    3. Snarls (bubble structures)
+
+    4. Nodes (leaf level)
+
+
+    Chains and snarls alternate in the hierarchy.'
+  tags:
+  - snarl
+  - chain
+  - hierarchy
+  difficulty: intermediate
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-008
+  type: basic
+  front: How is a duplication represented in a variation graph?
+  back: A node with an edge from its end back to its start (self-loop). A path can
+    traverse the node multiple times.
+  tags:
+  - snarl
+  - duplication
+  - variants
+  difficulty: intermediate
+  source: vg.wiki/Snarls-and-chains.md
+- id: snl-009
+  type: basic
+  front: How is an inversion represented in a variation graph?
+  back: A node that can be traversed in either direction. Its start and end are each
+    connected to both the previous and next nodes.
+  tags:
+  - snarl
+  - inversion
+  - variants
+  difficulty: intermediate
+  source: vg.wiki/Snarls-and-chains.md

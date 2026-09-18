@@ -1,0 +1,1991 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-04-10T23:14:44.157347",
+  "card_count": 160,
+  "decks": [
+    "vg-jargon::wiki::snarls",
+    "vg-jargon::algorithms",
+    "vg-jargon::data_structures",
+    "vg-jargon::wiki::file-types",
+    "vg-jargon::interfaces",
+    "vg-jargon::wiki::giraffe",
+    "vg-jargon::wiki::index-types"
+  ],
+  "cards": [
+    {
+      "id": "gbz-001",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "format",
+        "graph",
+        "gbwt"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "What is GBZ?",
+      "back": "A compressed graph format that combines:\n- Graph topology (nodes + edges)\n- GBWT (haplotype paths)\n- Reference path metadata\n\nThe primary graph format for Giraffe.\n"
+    },
+    {
+      "id": "gbz-002",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "gbwt",
+        "compression",
+        "haplotype"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What is GBWT?",
+      "back": "Graph Burrows-Wheeler Transform. A compressed representation\nof haplotype paths through the graph. Enables efficient\nhaplotype-aware operations.\n"
+    },
+    {
+      "id": "gbz-003-c1",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "format",
+        "commands",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "GBZ files use extension [...] and can be built with\nvg gbwt or vg autoindex.",
+      "back": "GBZ files use extension **.gbz** and can be built with\nvg gbwt or vg autoindex."
+    },
+    {
+      "id": "gbz-003-c2",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "format",
+        "commands",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "GBZ files use extension .gbz and can be built with\n[...] or vg autoindex.",
+      "back": "GBZ files use extension .gbz and can be built with\n**vg gbwt** or vg autoindex."
+    },
+    {
+      "id": "gbz-003-c3",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "format",
+        "commands",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "GBZ files use extension .gbz and can be built with\nvg gbwt or [...].",
+      "back": "GBZ files use extension .gbz and can be built with\nvg gbwt or **vg autoindex**."
+    },
+    {
+      "id": "gbz-004",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "format",
+        "graph",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "What graph formats can vg read?",
+      "back": "- `.vg` - Original protobuf format (mutable, large)\n- `.xg` - XG index (immutable, fast random access)\n- `.gbz` - GBZ format (immutable, haplotype-aware)\n- `.gfa` - GFA text format (interchange)\n- `.pg` - PackedGraph (mutable, compact)\n"
+    },
+    {
+      "id": "gbz-005",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "gbz",
+        "xg",
+        "giraffe",
+        "comparison"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "Why prefer GBZ over XG for Giraffe?",
+      "back": "GBZ includes GBWT haplotypes, enabling:\n- Haplotype-consistent alignment\n- Better scoring with haplotype information\n- Smaller file size with path compression\n"
+    },
+    {
+      "id": "gbz-006",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "gbwt",
+        "interface",
+        "implementation"
+      ],
+      "difficulty": "advanced",
+      "source": "vg/libhandlegraph",
+      "front": "What is a GBWTGraph?",
+      "back": "A HandleGraph implementation backed by GBWT.\nNodes and edges are derived from the haplotype paths.\nMemory-efficient for graphs with many haplotypes.\n"
+    },
+    {
+      "id": "dist-001",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "snarl",
+        "distance"
+      ],
+      "difficulty": "beginner",
+      "source": "libbdsg/libbdsg/snarl_distance_index.hpp",
+      "front": "What does the distance index store?",
+      "back": "A hierarchical snarl decomposition of the graph that enables\nfast computation of shortest distances between any two positions.\n"
+    },
+    {
+      "id": "dist-002-c1",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "commands",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Distance index is built with [...]\nand stored in .dist files.",
+      "back": "Distance index is built with **vg index -j**\nand stored in .dist files."
+    },
+    {
+      "id": "dist-002-c2",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "commands",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Distance index is built with vg index -j\nand stored in [...] files.",
+      "back": "Distance index is built with vg index -j\nand stored in **.dist** files."
+    },
+    {
+      "id": "dist-003",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "snarl",
+        "theory",
+        "structure"
+      ],
+      "difficulty": "intermediate",
+      "source": "libbdsg/vg.wiki/Snarls-and-chains.md",
+      "front": "What is a snarl?",
+      "back": "A subgraph with exactly two boundary nodes (start and end) where\nall paths entering through start must exit through end, and vice versa.\nRepresents a \"bubble\" or variant site in the graph.\n"
+    },
+    {
+      "id": "dist-004",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "snarl",
+        "chain",
+        "structure"
+      ],
+      "difficulty": "intermediate",
+      "source": "libbdsg/vg.wiki/Snarls-and-chains.md",
+      "front": "What is a chain in the snarl tree?",
+      "back": "A sequence of snarls connected end-to-end, where the end node\nof one snarl is the start node of the next. Chains alternate\nwith snarls in the hierarchy.\n"
+    },
+    {
+      "id": "dist-005",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "snarl",
+        "hierarchy",
+        "structure"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What is the snarl tree hierarchy (top to bottom)?",
+      "back": "1. Root (contains entire graph)\n2. Chains (sequences of connected snarls)\n3. Snarls (bubble structures)\n4. Nodes (leaf level)\n\nChains contain snarls, snarls contain chains or nodes.\n"
+    },
+    {
+      "id": "dist-006",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "giraffe",
+        "clustering",
+        "algorithm"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "Why does Giraffe need the distance index?",
+      "back": "For clustering seeds. After finding minimizer hits, Giraffe\ngroups nearby seeds using distance queries to identify\ncandidate alignment regions.\n"
+    },
+    {
+      "id": "dist-007-c1",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "hpc",
+        "gotcha"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "The distance index is [...] by default.\nIn HPC environments, make it read-only to avoid conflicts.",
+      "back": "The distance index is **memory-mapped** by default.\nIn HPC environments, make it read-only to avoid conflicts."
+    },
+    {
+      "id": "dist-007-c2",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "hpc",
+        "gotcha"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "The distance index is memory-mapped by default.\nIn HPC environments, make it [...] to avoid conflicts.",
+      "back": "The distance index is memory-mapped by default.\nIn HPC environments, make it **read-only** to avoid conflicts."
+    },
+    {
+      "id": "dist-008",
+      "deck": "vg-jargon::data_structures",
+      "tags": [
+        "index",
+        "zipcode",
+        "minimizer"
+      ],
+      "difficulty": "advanced",
+      "source": "libbdsg/vg.wiki/Giraffe-best-practices.md",
+      "front": "What are zipcodes in the context of distance index?",
+      "back": "Compressed distance annotations stored with minimizer positions.\nEnable faster distance lookups by caching hierarchical snarl\ninformation at each position.\n"
+    },
+    {
+      "id": "gir-001",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "pipeline",
+        "overview"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "What are the main stages of the Giraffe pipeline?",
+      "back": "1. **Seeding** - Find minimizer hits in the graph\n2. **Clustering** - Group nearby seeds by distance\n3. **Chain finding** - Order seeds into collinear chains\n4. **Alignment** - Extend chains to full alignments\n5. **Scoring** - Select best alignment(s)\n"
+    },
+    {
+      "id": "gir-002",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "seeding",
+        "minimizer"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What is seeding in Giraffe?",
+      "back": "Finding minimizer matches between the read and the graph.\nMinimizers are sampled k-mers that represent the read.\nEach hit gives a (read_pos, graph_pos) pair.\n"
+    },
+    {
+      "id": "gir-003",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "minimizer",
+        "seeding",
+        "index"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What is a minimizer?",
+      "back": "The lexicographically smallest k-mer in a window of w k-mers.\nProvides a sparse but representative sample of k-mers.\nReduces index size while maintaining sensitivity.\n"
+    },
+    {
+      "id": "gir-004",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "clustering",
+        "distance"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How does Giraffe cluster seeds?",
+      "back": "Uses the distance index to compute pairwise distances\nbetween seed positions. Seeds within a distance threshold\nare grouped into the same cluster.\n"
+    },
+    {
+      "id": "gir-005",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "chaining",
+        "algorithm"
+      ],
+      "difficulty": "advanced",
+      "source": "",
+      "front": "What is chaining in Giraffe?",
+      "back": "Finding the best ordered subset of seeds in a cluster\nthat could come from a single alignment. Uses dynamic\nprogramming on seed positions.\n"
+    },
+    {
+      "id": "gir-006-c1",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "requirements",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Giraffe requires: a [...] graph, a distance index,\na minimizer index, and a zipcodes file.",
+      "back": "Giraffe requires: a **GBZ** graph, a distance index,\na minimizer index, and a zipcodes file."
+    },
+    {
+      "id": "gir-006-c2",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "requirements",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Giraffe requires: a GBZ graph, a [...] index,\na minimizer index, and a zipcodes file.",
+      "back": "Giraffe requires: a GBZ graph, a **distance** index,\na minimizer index, and a zipcodes file."
+    },
+    {
+      "id": "gir-006-c3",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "requirements",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Giraffe requires: a GBZ graph, a distance index,\na [...] index, and a zipcodes file.",
+      "back": "Giraffe requires: a GBZ graph, a distance index,\na **minimizer** index, and a zipcodes file."
+    },
+    {
+      "id": "gir-006-c4",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "requirements",
+        "files"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "Giraffe requires: a GBZ graph, a distance index,\na minimizer index, and a [...] file.",
+      "back": "Giraffe requires: a GBZ graph, a distance index,\na minimizer index, and a **zipcodes** file."
+    },
+    {
+      "id": "gir-007",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "alignment",
+        "wfa"
+      ],
+      "difficulty": "advanced",
+      "source": "vg/vgteam/WFA2-lib",
+      "front": "What aligner does Giraffe use for extension?",
+      "back": "WFA (Wavefront Alignment) via the WFA2-lib.\nA fast exact algorithm for edit distance alignment.\nExtends chains to full read alignments.\n"
+    },
+    {
+      "id": "gir-008",
+      "deck": "vg-jargon::algorithms",
+      "tags": [
+        "giraffe",
+        "short-read",
+        "long-read"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "Short reads vs long reads in Giraffe - key difference?",
+      "back": "**Short reads**: Single chain usually sufficient\n**Long reads**: May need multiple chains stitched together,\nuses different chaining parameters, produces GAF output.\n"
+    },
+    {
+      "id": "idx-001",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "xg"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the XG index?",
+      "back": "XG is a space-efficient immutable graph. It is typically used in **mappers** and other applications that do not modify the graph. Multiple graphs can be combined into a single XG index with `vg index -x`. By default, the variants (alt paths) created with `vg construct -a` are not stored as paths in the XG index. They can be included with option `-L`. A single graph can be converted into XG format with `vg convert -x`.\n\nExtension: `.xg`"
+    },
+    {
+      "id": "idx-002",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "gbwtgraph---gbz"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the GBWTGraph / GBZ index?",
+      "back": "GBWTGraph is an immutable graph induced by the paths stored in an GBWT index. It uses the GBWT for graph topology and stores the sequences in the graph itself. Nodes and edges of the original graph not used on any GBWT path are not included in the GBWTGraph. Because any changes to the GBWT index make the GBWTGraph invalid, **standalone GBWTGraph files are no longer supported**.\n\nExtension: `.gbz`\nBuild command: `vg gbwt -g`"
+    },
+    {
+      "id": "idx-003",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "commands"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "How do you build a GBWTGraph / GBZ index?",
+      "back": "`vg gbwt -g`"
+    },
+    {
+      "id": "idx-004",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "gcsa"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the GCSA index?",
+      "back": "GCSA (sometimes called GCSA2) is an FM-index of a pruned de Bruijn graph that approximates the original graph. Queries up to a certain length (typically 256 bp) map perfectly to the original graph (or its subgraph if the graph was complex and had to be pruned). Longer queries may yield false positives. In most applications, **GCSA also needs the LCP array** for additional functionality. A GCSA index can be built with `vg index -g`. The inputs are typically pruned single-chromosome graphs.\n\nExtension: `.gcsa`\nBuild command: `vg index -g`"
+    },
+    {
+      "id": "idx-005",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "commands"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "How do you build a GCSA index?",
+      "back": "`vg index -g`"
+    },
+    {
+      "id": "idx-006",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "gbwt"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the GBWT index?",
+      "back": "The GBWT is an FM-index that stores similar paths space-efficiently. In most applications, it is used for storing (real or artificial) **haplotypes**. A GBWT index may also contain metadata with structured (sample, contig, haplotype, fragment) names for each path. Paths with sample name `_gbwt_ref` are often interpreted as generic paths.\n\nExtension: `.gbwt`"
+    },
+    {
+      "id": "idx-007",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "distance-index"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the Distance index index?",
+      "back": "A distance index stores a hierarchical snarl decomposition of the graph and uses it for computing shortest distances between positions in the graph. The index is built with `vg index -j`.\n\nExtension: `.dist`\nBuild command: `vg index -j`"
+    },
+    {
+      "id": "idx-008",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "commands"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "How do you build a Distance index index?",
+      "back": "`vg index -j`"
+    },
+    {
+      "id": "idx-009",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "zipcodes-file"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the Zipcodes file index?",
+      "back": "A zipcodes file stores \"zipcode\" information for seed kmers in the graph, when that information is too long to embed directly in the minimizer index (see below). The zipcodes file is built with `vg minimizer` at the same time as the minimizer index, by using the `-z`/`--zipcode-name` option.\n\nExtension: `.zipcodes`\nBuild command: `vg minimizer`"
+    },
+    {
+      "id": "idx-010",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "commands"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "How do you build a Zipcodes file index?",
+      "back": "`vg minimizer`"
+    },
+    {
+      "id": "idx-011",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "minimizer-index"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the Minimizer index index?",
+      "back": "A minimizer index stores a subset of kmers from the haplotypes and the corresponding graph positions in a hash table. The positions must be annotated with distance information for faster distance index queries. Minimizer indexes are built with `vg minimizer`. The construction requires a GBZ graph.\n\nExtension: `.withzip.min`\nBuild command: `vg minimizer`"
+    },
+    {
+      "id": "idx-012",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "commands"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "How do you build a Minimizer index index?",
+      "back": "`vg minimizer`"
+    },
+    {
+      "id": "idx-013",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "`vg-map`-and-`vg-mpmap`"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the `vg map` and `vg mpmap` index?",
+      "back": "The `vg map` and `vg mpmap` workflows require a graph (usually XG index) and a GCSA index with the LCP array. They may also uses a GBWT index with haplotypes for (potentially) more accurate alignment scores."
+    },
+    {
+      "id": "idx-014",
+      "deck": "vg-jargon::wiki::index-types",
+      "tags": [
+        "index",
+        "`vg-giraffe`"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Index-Types.md",
+      "front": "What is the `vg giraffe` index?",
+      "back": "Giraffe requires the following indexes:"
+    },
+    {
+      "id": "ft-001",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is VG Protobuf?",
+      "back": "The original vg graph format\nExtension: `.vg`\nStatus: Conditionally useful\nNotes: Can also be used to store paths without the nodes and edges they belong to. Default output format of `vg construct` in vg v1.40.0, since it can be generated incrementally. Can be concatenated with `cat`. Usually block-GZIP compressed, but some old files aren't. Consists of count-prefixed groups of length-prefixed Protobuf messages, where a string type tag takes the place of the first message in each group."
+    },
+    {
+      "id": "ft-002",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for VG Protobuf?",
+      "back": "`.vg`"
+    },
+    {
+      "id": "ft-003",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GBZ?",
+      "back": "\"GBZ\" graph, a compressed format storing a graph as traversed by sample haplotypes\nExtension: `.gbz`\nStatus: Recommended\nNotes: Stores not only the graph but also large numbers of haplotypes, so you don't need an additional GBWT file. Internally, stores a GBWT and a GBWTGraph. Can't store edges that are not followed."
+    },
+    {
+      "id": "ft-004",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GBZ?",
+      "back": "`.gbz`"
+    },
+    {
+      "id": "ft-005",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[GFA\\?",
+      "back": "File-Formats#gfa-graph-fragment--assembly-format]]\nExtension: [Graphical Fragment Assembly](https://gfa-spec.github.io/GFA-spec/GFA1.html): a text-based format for storing graphs and their embedded paths.\nStatus: `.gfa`\nNotes: Recommended for interchange"
+    },
+    {
+      "id": "ft-006",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[GFA\\?",
+      "back": "[Graphical Fragment Assembly](https://gfa-spec.github.io/GFA-spec/GFA1.html): a text-based format for storing graphs and their embedded paths."
+    },
+    {
+      "id": "ft-007",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is HashGraph?",
+      "back": "Graph format based on a hashtable, from [libbdsg](https://github.com/vgteam/libbdsg).\nExtension: `.hg`, `.vg`\nStatus: Recommended\nNotes: Default output format of many vg subcommands as of v1.40.0."
+    },
+    {
+      "id": "ft-008",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for HashGraph?",
+      "back": "`.hg`, `.vg`"
+    },
+    {
+      "id": "ft-009",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is PackedGraph?",
+      "back": "Graph format based on succinct data structures, from [libbdsg](https://github.com/vgteam/libbdsg).\nExtension: `.pg`, `.vg`\nStatus: Recommended for large graphs\nNotes: This format can store graphs in less space than HashGraph, but is also slower and more complicated."
+    },
+    {
+      "id": "ft-010",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for PackedGraph?",
+      "back": "`.pg`, `.vg`"
+    },
+    {
+      "id": "ft-011",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Memory-Mapped PackedGraph?",
+      "back": "A version of PackedGraph that can be incrementally read from disk\nExtension: `.mpg`?\nStatus: Experimental\nNotes: Might not actually be adopted; GBZ solves a different but often more important problem"
+    },
+    {
+      "id": "ft-012",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Memory-Mapped PackedGraph?",
+      "back": "`.mpg`?"
+    },
+    {
+      "id": "ft-013",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is ODGI (vg flavor)?",
+      "back": "\"Optimized Dynamic Genome/Graph Implementation\" format.\nExtension: `.odgi`\nStatus: Removed\nNotes: vg used to support a version implemented in [libbdsg](https://github.com/vgteam/libbdsg), which was **NOT** wire-compatible with the version implemented in [the odgi project](https://github.com/pangenome/odgi), and so was removed."
+    },
+    {
+      "id": "ft-014",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for ODGI (vg flavor)?",
+      "back": "`.odgi`"
+    },
+    {
+      "id": "ft-015",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[XG\\?",
+      "back": "File-Formats#xg-xg-lightweight-graph--path-index]]\nExtension: Compressed, immutable graph format. Doesn't really stand for anything.\nStatus: `.xg`\nNotes: Conditionally useful"
+    },
+    {
+      "id": "ft-016",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[XG\\?",
+      "back": "Compressed, immutable graph format. Doesn't really stand for anything."
+    },
+    {
+      "id": "ft-017",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GBWTGraph?",
+      "back": "Supplemental information to turn a GBWT into a graph.\nExtension: `.gg`\nStatus: Removed\nNotes: Stores node sequences only; defines a graph when used together with a GBWT file of haplotypes."
+    },
+    {
+      "id": "ft-018",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GBWTGraph?",
+      "back": "`.gg`"
+    },
+    {
+      "id": "ft-019",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is VG JSON?",
+      "back": "This is the VG Protobuf format, with the Protobuf `Graph` objects represented as JSON.\nExtension: `.json`\nStatus: Conditionally useful\nNotes: Useful for exporting small graphs for analysis with `jq`, or importing graphs from tools that can't use `libbdsg` or `libvgio`. Generally GFA should be used instead."
+    },
+    {
+      "id": "ft-020",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for VG JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-021",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Indexed VG Protobuf?",
+      "back": "This is the VG Protobuf format, stored in a sorted order with an auxilliary index file for random access.\nExtension: `.sorted.vg`\nStatus: Deprecated\nNotes: Was never very popular, and Memory-Mapped PackedGraph is intended as a replacement."
+    },
+    {
+      "id": "ft-022",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Indexed VG Protobuf?",
+      "back": "`.sorted.vg`"
+    },
+    {
+      "id": "ft-023",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "reference-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is FASTA?",
+      "back": "\"FASTA\" format for storing DNA sequences\nExtension: `.fa`, `.fasta`, `.fna`\nStatus: Recommended for linear references\nNotes: This is a linear genome reference format that `vg construct` can consume."
+    },
+    {
+      "id": "ft-024",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for FASTA?",
+      "back": "`.fa`, `.fasta`, `.fna`"
+    },
+    {
+      "id": "ft-025",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[GAM Protobuf\\?",
+      "back": "File-Formats#gam-graph-alignment--map-vgs-bam]]\nExtension: Graph Alignment/Map, vg's main format for aligned reads\nStatus: `.gam`\nNotes: Recommended"
+    },
+    {
+      "id": "ft-026",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[GAM Protobuf\\?",
+      "back": "Graph Alignment/Map, vg's main format for aligned reads"
+    },
+    {
+      "id": "ft-027",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GAF?",
+      "back": "[Graph Alignment Format](https://github.com/vgteam/vg/blob/master/doc/static/GAF.md), a text-based format for aligned reads\nExtension: `.gaf`\nStatus: Recommended for interchange\nNotes: Diverged from the original specification since 1.70.0"
+    },
+    {
+      "id": "ft-028",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GAF?",
+      "back": "`.gaf`"
+    },
+    {
+      "id": "ft-029",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Sorted GAM?",
+      "back": "GAM file with reads sorted by graph node ID. Useful for random access with an index.\nExtension: `.sorted.gam`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-030",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Sorted GAM?",
+      "back": "`.sorted.gam`"
+    },
+    {
+      "id": "ft-031",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GAM JSON?",
+      "back": "JSON version of the Protobuf GAM format.\nExtension: `.json`\nStatus: Conditionally useful\nNotes: Used for analyzing reads with `jq`."
+    },
+    {
+      "id": "ft-032",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GAM JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-033",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GAMP Protobuf?",
+      "back": "Multi-path alignment version of GAM\nExtension: `.gamp`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-034",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GAMP Protobuf?",
+      "back": "`.gamp`"
+    },
+    {
+      "id": "ft-035",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GAMP JSON?",
+      "back": "JSON version of GAMP format\nExtension: `.json`\nStatus: Conditionally useful"
+    },
+    {
+      "id": "ft-036",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GAMP JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-037",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is BAM?",
+      "back": "Binary Alignment/Map format for alignments against a linear reference\nExtension: `.bam`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-038",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for BAM?",
+      "back": "`.bam`"
+    },
+    {
+      "id": "ft-039",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is SAM?",
+      "back": "Sequence/Alignment Map format, a text-based version of BAM\nExtension: `.sam`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-040",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for SAM?",
+      "back": "`.sam`"
+    },
+    {
+      "id": "ft-041",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "read-and-alignment-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is FASTQ?",
+      "back": "Version of FASTA with per-base quality scores. Used for unaligned reads.\nExtension: `.fq`, `.fastq`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-042",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for FASTQ?",
+      "back": "`.fq`, `.fastq`"
+    },
+    {
+      "id": "ft-043",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is GBWT?",
+      "back": "[Graph Burrows-Wheeler Transform](https://github.com/jltsiren/gbwt/) file, storing haplotypes for samples\nExtension: `.gbwt`\nStatus: Conditionally useful\nNotes: It sometimes makes more sense to use a GBZ."
+    },
+    {
+      "id": "ft-044",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for GBWT?",
+      "back": "`.gbwt`"
+    },
+    {
+      "id": "ft-045",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is VCF?",
+      "back": "[Variant Call Format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file, storing sample genotypes and haplotypes against a linear reference\nExtension: `.vcf`, `.vcf.gz`\nStatus: Recommended\nNotes: Not all VCF 4.3 features are supported by vg"
+    },
+    {
+      "id": "ft-046",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for VCF?",
+      "back": "`.vcf`, `.vcf.gz`"
+    },
+    {
+      "id": "ft-047",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Pack File?",
+      "back": "Stores read information as counts of visited graph elements\nExtension: `.cx`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-048",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Pack File?",
+      "back": "`.cx`"
+    },
+    {
+      "id": "ft-049",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Pileup Protobuf?",
+      "back": "Stores read information as counts of visited graph elements\nExtension: `.pileup`?\nStatus: Deprecated"
+    },
+    {
+      "id": "ft-050",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Pileup Protobuf?",
+      "back": "`.pileup`?"
+    },
+    {
+      "id": "ft-051",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Pileup JSON?",
+      "back": "JSON version of the Pileup Protobuf format\nExtension: `.json`\nStatus: Deprecated"
+    },
+    {
+      "id": "ft-052",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Pileup JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-053",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Locus Protobuf?",
+      "back": "Stores genotypes against a graph reference\nExtension: `.loci`\nStatus: Experimental"
+    },
+    {
+      "id": "ft-054",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Locus Protobuf?",
+      "back": "`.loci`"
+    },
+    {
+      "id": "ft-055",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "sample-information-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Locus JSON?",
+      "back": "JSON version of the Locus Protobuf format\nExtension: `.json`\nStatus: Deprecated"
+    },
+    {
+      "id": "ft-056",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Locus JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-057",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Distance Index (v1-3)?",
+      "back": "Index for computing distances between points in a graph\nExtension: `.dist`\nStatus: Deprecated\nNotes: Used in `vg giraffe`"
+    },
+    {
+      "id": "ft-058",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Distance Index (v1-3)?",
+      "back": "`.dist`"
+    },
+    {
+      "id": "ft-059",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Distance Index (v4)?",
+      "back": "Index for computing distances between points in a graph\nExtension: `.dist`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-060",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Distance Index (v4)?",
+      "back": "`.dist`"
+    },
+    {
+      "id": "ft-061",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[GCSA\\?",
+      "back": "File-Formats#gcsa-gcsa-generalized-compressed-suffix-array-index]]\nExtension: [Generalized Compressed Suffix Array](https://github.com/jltsiren/gcsa2), version 2, for finding substrings in a graph\nStatus: `.gcsa`\nNotes: Recommended"
+    },
+    {
+      "id": "ft-062",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[GCSA\\?",
+      "back": "[Generalized Compressed Suffix Array](https://github.com/jltsiren/gcsa2), version 2, for finding substrings in a graph"
+    },
+    {
+      "id": "ft-063",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Zipcodes?",
+      "back": "Stores supplemental distance information for substrings in a graph\nExtension: `.zipcodes`, `.shortread.zipcodes`, `.longread.zipcodes`\nStatus: Recommended\nNotes: Used in `vg giraffe`."
+    },
+    {
+      "id": "ft-064",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Zipcodes?",
+      "back": "`.zipcodes`, `.shortread.zipcodes`, `.longread.zipcodes`"
+    },
+    {
+      "id": "ft-065",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Minimizer Index with Zipcodes?",
+      "back": "Used to find \"minimizer\" substrings in a graph, when also using a `.zipcodes` file\nExtension: `.withzip.min`, `.shortread.withzip.min`, `.longread.withzip.min`\nStatus: Recommended\nNotes: Used in `vg giraffe`"
+    },
+    {
+      "id": "ft-066",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Minimizer Index with Zipcodes?",
+      "back": "`.withzip.min`, `.shortread.withzip.min`, `.longread.withzip.min`"
+    },
+    {
+      "id": "ft-067",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Minimizer Index?",
+      "back": "Used to find \"minimizer\" substrings in a graph\nExtension: `.min`\nStatus: Deprecated\nNotes: Use a pair of `.zipcodes` and `.withzip.min` files instead."
+    },
+    {
+      "id": "ft-068",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Minimizer Index?",
+      "back": "`.min`"
+    },
+    {
+      "id": "ft-069",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is BED?",
+      "back": "[Browser Extensible Data](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) format, used for defining regions\nExtension: `.bed`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-070",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for BED?",
+      "back": "`.bed`"
+    },
+    {
+      "id": "ft-071",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[Dot\\?",
+      "back": "File-Formats#dot-dot-format-for-graphtools-viz]]\nExtension: GraphViz input format\nStatus: `.dot`\nNotes: Conditionally useful"
+    },
+    {
+      "id": "ft-072",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[Dot\\?",
+      "back": "GraphViz input format"
+    },
+    {
+      "id": "ft-073",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Snarl Protobuf?",
+      "back": "Hierarchical decomposition of a graph into variable sites, called \"snarls\"\nExtension: `.snarls`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-074",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Snarl Protobuf?",
+      "back": "`.snarls`"
+    },
+    {
+      "id": "ft-075",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Snarl JSON?",
+      "back": "JSON representation of Protobuf snarl data\nExtension: `.json`\nStatus: Conditionally useful"
+    },
+    {
+      "id": "ft-076",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Snarl JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-077",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is SnarlTraversal Protobuf?",
+      "back": "Binary representation of possible paths through snarls\nExtension: `.trav`?\nStatus: Conditionally useful"
+    },
+    {
+      "id": "ft-078",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for SnarlTraversal Protobuf?",
+      "back": "`.trav`?"
+    },
+    {
+      "id": "ft-079",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is SnarlTraversal JSON?",
+      "back": "Text representation of possible paths through snarls\nExtension: `.json`\nStatus: Conditionally useful"
+    },
+    {
+      "id": "ft-080",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for SnarlTraversal JSON?",
+      "back": "`.json`"
+    },
+    {
+      "id": "ft-081",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Node ID Translation?",
+      "back": "Recorded information about changes made to nodes while modifying a graph\nExtension: `.trans`\nStatus: Conditionally useful"
+    },
+    {
+      "id": "ft-082",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Node ID Translation?",
+      "back": "`.trans`"
+    },
+    {
+      "id": "ft-083",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is VG Protobuf Index?",
+      "back": "Index over a sorted VG Protobuf file\nExtension: `.vgi`\nStatus: Experimental"
+    },
+    {
+      "id": "ft-084",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for VG Protobuf Index?",
+      "back": "`.vgi`"
+    },
+    {
+      "id": "ft-085",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is [[GAM Index\\?",
+      "back": "File-Formats#gamindex-an-on-disk-index-for-gam]]\nExtension: Index over a sorted GAM Protobuf file\nStatus: `.gai`, `.gam.index`\nNotes: Recommended"
+    },
+    {
+      "id": "ft-086",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for [[GAM Index\\?",
+      "back": "Index over a sorted GAM Protobuf file"
+    },
+    {
+      "id": "ft-087",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is FASTA Index?",
+      "back": "Index over a FASTA file for random access\nExtension: `.fai`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-088",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for FASTA Index?",
+      "back": "`.fai`"
+    },
+    {
+      "id": "ft-089",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is BAM Index?",
+      "back": "Index over a sorted BAM file for random access\nExtension: `.bai`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-090",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for BAM Index?",
+      "back": "`.bai`"
+    },
+    {
+      "id": "ft-091",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "miscellaneous-formats"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What is Tabix VCF Index?",
+      "back": "Index over a sorted, compressed VCF file for random access\nExtension: `.tbi`\nStatus: Recommended"
+    },
+    {
+      "id": "ft-092",
+      "deck": "vg-jargon::wiki::file-types",
+      "tags": [
+        "file-types",
+        "extensions"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/File-Types.md",
+      "front": "What file extension is used for Tabix VCF Index?",
+      "back": "`.tbi`"
+    },
+    {
+      "id": "snl-001",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "theory",
+        "definition"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "What is a snarl?",
+      "back": "A topological motif where two or more alternative paths exist between two boundary nodes. A generalization of a 'bubble'. Represents variable sequence flanked by conserved sequence."
+    },
+    {
+      "id": "snl-002",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "theory",
+        "definition"
+      ],
+      "difficulty": "advanced",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "What are the two properties that define a snarl?",
+      "back": "1. Separable: splitting boundary nodes disconnects the snarl from the rest of the graph\n2. Minimal: no internal node is separable with the boundary nodes"
+    },
+    {
+      "id": "snl-003",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "chain",
+        "snarl",
+        "theory"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "What is a chain in the snarl decomposition?",
+      "back": "A sequence of consecutive snarls with shared boundary nodes between them. For example, if snarl 1-4 and snarl 4-6 share node 4, they form chain 1-6."
+    },
+    {
+      "id": "snl-004",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "theory"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "What are the boundary nodes of a snarl?",
+      "back": "The two nodes (x and y) that delimit a snarl's subgraph. They are the entry and exit points of the variable region."
+    },
+    {
+      "id": "snl-005",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "snp",
+        "variants"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "How is an SNP represented in a variation graph?",
+      "back": "Two allele nodes (e.g., nodes 2 and 3) connected between two flanking conserved nodes (e.g., 1 and 4). Forms a simple snarl."
+    },
+    {
+      "id": "snl-006",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "indel",
+        "variants"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "How is an indel represented in a variation graph?",
+      "back": "Insertion: a node for inserted sequence between boundary nodes.\nDeletion: an edge bypassing the deleted sequence node."
+    },
+    {
+      "id": "snl-007",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "chain",
+        "hierarchy"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "What is the snarl tree hierarchy (top to bottom)?",
+      "back": "1. Root (contains entire graph)\n2. Chains (sequences of connected snarls)\n3. Snarls (bubble structures)\n4. Nodes (leaf level)\n\nChains and snarls alternate in the hierarchy."
+    },
+    {
+      "id": "snl-008",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "duplication",
+        "variants"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "How is a duplication represented in a variation graph?",
+      "back": "A node with an edge from its end back to its start (self-loop). A path can traverse the node multiple times."
+    },
+    {
+      "id": "snl-009",
+      "deck": "vg-jargon::wiki::snarls",
+      "tags": [
+        "snarl",
+        "inversion",
+        "variants"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Snarls-and-chains.md",
+      "front": "How is an inversion represented in a variation graph?",
+      "back": "A node that can be traversed in either direction. Its start and end are each connected to both the previous and next nodes."
+    },
+    {
+      "id": "gbp-001",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "indexes",
+        "requirements"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "What indexes does Giraffe require?",
+      "back": "1. GBZ graph (contains GBWT + GBWTGraph)\n2. Distance index (.dist)\n3. Minimizer index (.withzip.min)\n4. Zipcodes file (.zipcodes)"
+    },
+    {
+      "id": "gbp-002",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "hpc",
+        "gotcha"
+      ],
+      "difficulty": "advanced",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "Why should the distance index be read-only in HPC environments?",
+      "back": "As of vg 1.48.0, the distance index is memory-mapped in read+write mode by default. Multiple nodes accessing the same file causes conflicts. Make it read-only or use local copies."
+    },
+    {
+      "id": "gbp-003",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "graphs",
+        "best-practice"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "What graph structures does Giraffe prefer?",
+      "back": "Graphs that avoid complex structures at every level: low-degree nodes, no collapsed repetitive regions, no long-distance edges. Minimize sequence duplication."
+    },
+    {
+      "id": "gbp-004",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "commands",
+        "flags"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "How do you specify index files explicitly in Giraffe?",
+      "back": "-Z / --gbz-name: GBZ graph\n-d / --dist-name: distance index\n-m / --minimizer-name: minimizer index\n-z / --zipcode-name: zipcodes file"
+    },
+    {
+      "id": "gbp-005",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "performance",
+        "gotcha"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "What happens if you don't provide zipcode annotations to Giraffe?",
+      "back": "Mapping speed will be slow. Always build the minimizer index with -d (distance index) and -z (zipcode output) options."
+    },
+    {
+      "id": "gbp-006",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "short-read",
+        "long-read"
+      ],
+      "difficulty": "intermediate",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "Difference between short-read and long-read Giraffe indexes?",
+      "back": "Different k values for minimizers.\nShort read: .shortread.zipcodes, .shortread.withzip.min\nLong read: .longread.zipcodes, .longread.withzip.min"
+    },
+    {
+      "id": "gbp-007",
+      "deck": "vg-jargon::wiki::giraffe",
+      "tags": [
+        "giraffe",
+        "commands",
+        "autoindex"
+      ],
+      "difficulty": "beginner",
+      "source": "vg.wiki/vg.wiki/Giraffe-best-practices.md",
+      "front": "What is the easiest way to build all Giraffe indexes?",
+      "back": "`vg autoindex` - automatically builds GBZ, distance index, minimizer index, and zipcodes from input FASTA + VCF."
+    },
+    {
+      "id": "hg-001",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "core",
+        "beginner"
+      ],
+      "difficulty": "beginner",
+      "source": "libhandlegraph/libhandlegraph/handle_graph.hpp",
+      "front": "What is a HandleGraph?",
+      "back": "The base interface for all graph implementations in vg.\nProvides read-only access to nodes and edges via opaque \"handles\".\n"
+    },
+    {
+      "id": "hg-002",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "core",
+        "handle"
+      ],
+      "difficulty": "beginner",
+      "source": "libhandlegraph/libhandlegraph/handle_graph.hpp",
+      "front": "What is a \"handle\" in HandleGraph?",
+      "back": "An opaque reference to a node orientation (forward or reverse).\nEncodes both node ID and strand in a single 64-bit value.\n"
+    },
+    {
+      "id": "hg-003",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "sequence"
+      ],
+      "difficulty": "intermediate",
+      "source": "libhandlegraph/libhandlegraph/handle_graph.hpp",
+      "front": "Method: get the sequence of a node from its handle?",
+      "back": "```cpp\nstd::string get_sequence(const handle_t& handle) const\n```\nReturns the sequence in the orientation of the handle.\n"
+    },
+    {
+      "id": "hg-004",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "edges",
+        "traversal"
+      ],
+      "difficulty": "intermediate",
+      "source": "libhandlegraph/libhandlegraph/handle_graph.hpp",
+      "front": "Method: iterate over all edges from a handle?",
+      "back": "```cpp\nbool follow_edges(const handle_t& handle, bool go_left,\n                  const std::function<bool(const handle_t&)>& iteratee) const\n```\nCalls iteratee for each neighbor. go_left=true for incoming edges.\n"
+    },
+    {
+      "id": "hg-005-c1",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "conversion"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "To get a handle from a node ID: [...]\nTo get the node ID from a handle: get_id(handle)",
+      "back": "To get a handle from a node ID: **get_handle(id, is_reverse)**\nTo get the node ID from a handle: get_id(handle)"
+    },
+    {
+      "id": "hg-005-c2",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "conversion"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "To get a handle from a node ID: get_handle(id, is_reverse)\nTo get the node ID from a handle: [...]",
+      "back": "To get a handle from a node ID: get_handle(id, is_reverse)\nTo get the node ID from a handle: **get_id(handle)**"
+    },
+    {
+      "id": "hg-006",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "sequence"
+      ],
+      "difficulty": "beginner",
+      "source": "libhandlegraph/libhandlegraph/handle_graph.hpp",
+      "front": "Method: get the length of a node?",
+      "back": "```cpp\nsize_t get_length(const handle_t& handle) const\n```\nReturns the length of the node's sequence.\n"
+    },
+    {
+      "id": "hg-007",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "handle"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "What does `flip(handle)` return?",
+      "back": "The handle to the same node but in the opposite orientation.\n`flip(flip(h)) == h` is always true.\n"
+    },
+    {
+      "id": "hg-007-rev",
+      "deck": "vg-jargon::interfaces",
+      "tags": [
+        "interface",
+        "method",
+        "handle"
+      ],
+      "difficulty": "beginner",
+      "source": "",
+      "front": "The handle to the same node but in the opposite orientation.\n`flip(flip(h)) == h` is always true.\n",
+      "back": "What does `flip(handle)` return?"
+    }
+  ]
+}

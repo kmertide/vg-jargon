@@ -1,0 +1,1091 @@
+deck: vg-jargon::wiki::file-types
+description: File formats and extensions in the vg ecosystem
+source_repo: vg.wiki
+cards:
+- id: ft-001
+  type: basic
+  front: What is VG Protobuf?
+  back: 'The original vg graph format
+
+    Extension: `.vg`
+
+    Status: Conditionally useful
+
+    Notes: Can also be used to store paths without the nodes and edges they belong
+    to. Default output format of `vg construct` in vg v1.40.0, since it can be generated
+    incrementally. Can be concatenated with `cat`. Usually block-GZIP compressed,
+    but some old files aren''t. Consists of count-prefixed groups of length-prefixed
+    Protobuf messages, where a string type tag takes the place of the first message
+    in each group.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-002
+  type: basic
+  front: What file extension is used for VG Protobuf?
+  back: '`.vg`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-003
+  type: basic
+  front: What is GBZ?
+  back: '"GBZ" graph, a compressed format storing a graph as traversed by sample haplotypes
+
+    Extension: `.gbz`
+
+    Status: Recommended
+
+    Notes: Stores not only the graph but also large numbers of haplotypes, so you
+    don''t need an additional GBWT file. Internally, stores a GBWT and a GBWTGraph.
+    Can''t store edges that are not followed.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-004
+  type: basic
+  front: What file extension is used for GBZ?
+  back: '`.gbz`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-005
+  type: basic
+  front: What is [[GFA\?
+  back: 'File-Formats#gfa-graph-fragment--assembly-format]]
+
+    Extension: [Graphical Fragment Assembly](https://gfa-spec.github.io/GFA-spec/GFA1.html):
+    a text-based format for storing graphs and their embedded paths.
+
+    Status: `.gfa`
+
+    Notes: Recommended for interchange'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-006
+  type: basic
+  front: What file extension is used for [[GFA\?
+  back: '[Graphical Fragment Assembly](https://gfa-spec.github.io/GFA-spec/GFA1.html):
+    a text-based format for storing graphs and their embedded paths.'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-007
+  type: basic
+  front: What is HashGraph?
+  back: 'Graph format based on a hashtable, from [libbdsg](https://github.com/vgteam/libbdsg).
+
+    Extension: `.hg`, `.vg`
+
+    Status: Recommended
+
+    Notes: Default output format of many vg subcommands as of v1.40.0.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-008
+  type: basic
+  front: What file extension is used for HashGraph?
+  back: '`.hg`, `.vg`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-009
+  type: basic
+  front: What is PackedGraph?
+  back: 'Graph format based on succinct data structures, from [libbdsg](https://github.com/vgteam/libbdsg).
+
+    Extension: `.pg`, `.vg`
+
+    Status: Recommended for large graphs
+
+    Notes: This format can store graphs in less space than HashGraph, but is also
+    slower and more complicated.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-010
+  type: basic
+  front: What file extension is used for PackedGraph?
+  back: '`.pg`, `.vg`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-011
+  type: basic
+  front: What is Memory-Mapped PackedGraph?
+  back: 'A version of PackedGraph that can be incrementally read from disk
+
+    Extension: `.mpg`?
+
+    Status: Experimental
+
+    Notes: Might not actually be adopted; GBZ solves a different but often more important
+    problem'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-012
+  type: basic
+  front: What file extension is used for Memory-Mapped PackedGraph?
+  back: '`.mpg`?'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-013
+  type: basic
+  front: What is ODGI (vg flavor)?
+  back: '"Optimized Dynamic Genome/Graph Implementation" format.
+
+    Extension: `.odgi`
+
+    Status: Removed
+
+    Notes: vg used to support a version implemented in [libbdsg](https://github.com/vgteam/libbdsg),
+    which was **NOT** wire-compatible with the version implemented in [the odgi project](https://github.com/pangenome/odgi),
+    and so was removed.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-014
+  type: basic
+  front: What file extension is used for ODGI (vg flavor)?
+  back: '`.odgi`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-015
+  type: basic
+  front: What is [[XG\?
+  back: 'File-Formats#xg-xg-lightweight-graph--path-index]]
+
+    Extension: Compressed, immutable graph format. Doesn''t really stand for anything.
+
+    Status: `.xg`
+
+    Notes: Conditionally useful'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-016
+  type: basic
+  front: What file extension is used for [[XG\?
+  back: Compressed, immutable graph format. Doesn't really stand for anything.
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-017
+  type: basic
+  front: What is GBWTGraph?
+  back: 'Supplemental information to turn a GBWT into a graph.
+
+    Extension: `.gg`
+
+    Status: Removed
+
+    Notes: Stores node sequences only; defines a graph when used together with a GBWT
+    file of haplotypes.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-018
+  type: basic
+  front: What file extension is used for GBWTGraph?
+  back: '`.gg`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-019
+  type: basic
+  front: What is VG JSON?
+  back: 'This is the VG Protobuf format, with the Protobuf `Graph` objects represented
+    as JSON.
+
+    Extension: `.json`
+
+    Status: Conditionally useful
+
+    Notes: Useful for exporting small graphs for analysis with `jq`, or importing
+    graphs from tools that can''t use `libbdsg` or `libvgio`. Generally GFA should
+    be used instead.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-020
+  type: basic
+  front: What file extension is used for VG JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-021
+  type: basic
+  front: What is Indexed VG Protobuf?
+  back: 'This is the VG Protobuf format, stored in a sorted order with an auxilliary
+    index file for random access.
+
+    Extension: `.sorted.vg`
+
+    Status: Deprecated
+
+    Notes: Was never very popular, and Memory-Mapped PackedGraph is intended as a
+    replacement.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-022
+  type: basic
+  front: What file extension is used for Indexed VG Protobuf?
+  back: '`.sorted.vg`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-023
+  type: basic
+  front: What is FASTA?
+  back: '"FASTA" format for storing DNA sequences
+
+    Extension: `.fa`, `.fasta`, `.fna`
+
+    Status: Recommended for linear references
+
+    Notes: This is a linear genome reference format that `vg construct` can consume.'
+  tags:
+  - file-types
+  - reference-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-024
+  type: basic
+  front: What file extension is used for FASTA?
+  back: '`.fa`, `.fasta`, `.fna`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-025
+  type: basic
+  front: What is [[GAM Protobuf\?
+  back: 'File-Formats#gam-graph-alignment--map-vgs-bam]]
+
+    Extension: Graph Alignment/Map, vg''s main format for aligned reads
+
+    Status: `.gam`
+
+    Notes: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-026
+  type: basic
+  front: What file extension is used for [[GAM Protobuf\?
+  back: Graph Alignment/Map, vg's main format for aligned reads
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-027
+  type: basic
+  front: What is GAF?
+  back: '[Graph Alignment Format](https://github.com/vgteam/vg/blob/master/doc/static/GAF.md),
+    a text-based format for aligned reads
+
+    Extension: `.gaf`
+
+    Status: Recommended for interchange
+
+    Notes: Diverged from the original specification since 1.70.0'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-028
+  type: basic
+  front: What file extension is used for GAF?
+  back: '`.gaf`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-029
+  type: basic
+  front: What is Sorted GAM?
+  back: 'GAM file with reads sorted by graph node ID. Useful for random access with
+    an index.
+
+    Extension: `.sorted.gam`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-030
+  type: basic
+  front: What file extension is used for Sorted GAM?
+  back: '`.sorted.gam`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-031
+  type: basic
+  front: What is GAM JSON?
+  back: 'JSON version of the Protobuf GAM format.
+
+    Extension: `.json`
+
+    Status: Conditionally useful
+
+    Notes: Used for analyzing reads with `jq`.'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-032
+  type: basic
+  front: What file extension is used for GAM JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-033
+  type: basic
+  front: What is GAMP Protobuf?
+  back: 'Multi-path alignment version of GAM
+
+    Extension: `.gamp`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-034
+  type: basic
+  front: What file extension is used for GAMP Protobuf?
+  back: '`.gamp`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-035
+  type: basic
+  front: What is GAMP JSON?
+  back: 'JSON version of GAMP format
+
+    Extension: `.json`
+
+    Status: Conditionally useful'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-036
+  type: basic
+  front: What file extension is used for GAMP JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-037
+  type: basic
+  front: What is BAM?
+  back: 'Binary Alignment/Map format for alignments against a linear reference
+
+    Extension: `.bam`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-038
+  type: basic
+  front: What file extension is used for BAM?
+  back: '`.bam`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-039
+  type: basic
+  front: What is SAM?
+  back: 'Sequence/Alignment Map format, a text-based version of BAM
+
+    Extension: `.sam`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-040
+  type: basic
+  front: What file extension is used for SAM?
+  back: '`.sam`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-041
+  type: basic
+  front: What is FASTQ?
+  back: 'Version of FASTA with per-base quality scores. Used for unaligned reads.
+
+    Extension: `.fq`, `.fastq`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - read-and-alignment-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-042
+  type: basic
+  front: What file extension is used for FASTQ?
+  back: '`.fq`, `.fastq`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-043
+  type: basic
+  front: What is GBWT?
+  back: '[Graph Burrows-Wheeler Transform](https://github.com/jltsiren/gbwt/) file,
+    storing haplotypes for samples
+
+    Extension: `.gbwt`
+
+    Status: Conditionally useful
+
+    Notes: It sometimes makes more sense to use a GBZ.'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-044
+  type: basic
+  front: What file extension is used for GBWT?
+  back: '`.gbwt`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-045
+  type: basic
+  front: What is VCF?
+  back: '[Variant Call Format](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file,
+    storing sample genotypes and haplotypes against a linear reference
+
+    Extension: `.vcf`, `.vcf.gz`
+
+    Status: Recommended
+
+    Notes: Not all VCF 4.3 features are supported by vg'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-046
+  type: basic
+  front: What file extension is used for VCF?
+  back: '`.vcf`, `.vcf.gz`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-047
+  type: basic
+  front: What is Pack File?
+  back: 'Stores read information as counts of visited graph elements
+
+    Extension: `.cx`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-048
+  type: basic
+  front: What file extension is used for Pack File?
+  back: '`.cx`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-049
+  type: basic
+  front: What is Pileup Protobuf?
+  back: 'Stores read information as counts of visited graph elements
+
+    Extension: `.pileup`?
+
+    Status: Deprecated'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-050
+  type: basic
+  front: What file extension is used for Pileup Protobuf?
+  back: '`.pileup`?'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-051
+  type: basic
+  front: What is Pileup JSON?
+  back: 'JSON version of the Pileup Protobuf format
+
+    Extension: `.json`
+
+    Status: Deprecated'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-052
+  type: basic
+  front: What file extension is used for Pileup JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-053
+  type: basic
+  front: What is Locus Protobuf?
+  back: 'Stores genotypes against a graph reference
+
+    Extension: `.loci`
+
+    Status: Experimental'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-054
+  type: basic
+  front: What file extension is used for Locus Protobuf?
+  back: '`.loci`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-055
+  type: basic
+  front: What is Locus JSON?
+  back: 'JSON version of the Locus Protobuf format
+
+    Extension: `.json`
+
+    Status: Deprecated'
+  tags:
+  - file-types
+  - sample-information-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-056
+  type: basic
+  front: What file extension is used for Locus JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-057
+  type: basic
+  front: What is Distance Index (v1-3)?
+  back: 'Index for computing distances between points in a graph
+
+    Extension: `.dist`
+
+    Status: Deprecated
+
+    Notes: Used in `vg giraffe`'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-058
+  type: basic
+  front: What file extension is used for Distance Index (v1-3)?
+  back: '`.dist`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-059
+  type: basic
+  front: What is Distance Index (v4)?
+  back: 'Index for computing distances between points in a graph
+
+    Extension: `.dist`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-060
+  type: basic
+  front: What file extension is used for Distance Index (v4)?
+  back: '`.dist`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-061
+  type: basic
+  front: What is [[GCSA\?
+  back: 'File-Formats#gcsa-gcsa-generalized-compressed-suffix-array-index]]
+
+    Extension: [Generalized Compressed Suffix Array](https://github.com/jltsiren/gcsa2),
+    version 2, for finding substrings in a graph
+
+    Status: `.gcsa`
+
+    Notes: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-062
+  type: basic
+  front: What file extension is used for [[GCSA\?
+  back: '[Generalized Compressed Suffix Array](https://github.com/jltsiren/gcsa2),
+    version 2, for finding substrings in a graph'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-063
+  type: basic
+  front: What is Zipcodes?
+  back: 'Stores supplemental distance information for substrings in a graph
+
+    Extension: `.zipcodes`, `.shortread.zipcodes`, `.longread.zipcodes`
+
+    Status: Recommended
+
+    Notes: Used in `vg giraffe`.'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-064
+  type: basic
+  front: What file extension is used for Zipcodes?
+  back: '`.zipcodes`, `.shortread.zipcodes`, `.longread.zipcodes`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-065
+  type: basic
+  front: What is Minimizer Index with Zipcodes?
+  back: 'Used to find "minimizer" substrings in a graph, when also using a `.zipcodes`
+    file
+
+    Extension: `.withzip.min`, `.shortread.withzip.min`, `.longread.withzip.min`
+
+    Status: Recommended
+
+    Notes: Used in `vg giraffe`'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-066
+  type: basic
+  front: What file extension is used for Minimizer Index with Zipcodes?
+  back: '`.withzip.min`, `.shortread.withzip.min`, `.longread.withzip.min`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-067
+  type: basic
+  front: What is Minimizer Index?
+  back: 'Used to find "minimizer" substrings in a graph
+
+    Extension: `.min`
+
+    Status: Deprecated
+
+    Notes: Use a pair of `.zipcodes` and `.withzip.min` files instead.'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-068
+  type: basic
+  front: What file extension is used for Minimizer Index?
+  back: '`.min`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-069
+  type: basic
+  front: What is BED?
+  back: '[Browser Extensible Data](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)
+    format, used for defining regions
+
+    Extension: `.bed`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-070
+  type: basic
+  front: What file extension is used for BED?
+  back: '`.bed`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-071
+  type: basic
+  front: What is [[Dot\?
+  back: 'File-Formats#dot-dot-format-for-graphtools-viz]]
+
+    Extension: GraphViz input format
+
+    Status: `.dot`
+
+    Notes: Conditionally useful'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-072
+  type: basic
+  front: What file extension is used for [[Dot\?
+  back: GraphViz input format
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-073
+  type: basic
+  front: What is Snarl Protobuf?
+  back: 'Hierarchical decomposition of a graph into variable sites, called "snarls"
+
+    Extension: `.snarls`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-074
+  type: basic
+  front: What file extension is used for Snarl Protobuf?
+  back: '`.snarls`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-075
+  type: basic
+  front: What is Snarl JSON?
+  back: 'JSON representation of Protobuf snarl data
+
+    Extension: `.json`
+
+    Status: Conditionally useful'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-076
+  type: basic
+  front: What file extension is used for Snarl JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-077
+  type: basic
+  front: What is SnarlTraversal Protobuf?
+  back: 'Binary representation of possible paths through snarls
+
+    Extension: `.trav`?
+
+    Status: Conditionally useful'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-078
+  type: basic
+  front: What file extension is used for SnarlTraversal Protobuf?
+  back: '`.trav`?'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-079
+  type: basic
+  front: What is SnarlTraversal JSON?
+  back: 'Text representation of possible paths through snarls
+
+    Extension: `.json`
+
+    Status: Conditionally useful'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-080
+  type: basic
+  front: What file extension is used for SnarlTraversal JSON?
+  back: '`.json`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-081
+  type: basic
+  front: What is Node ID Translation?
+  back: 'Recorded information about changes made to nodes while modifying a graph
+
+    Extension: `.trans`
+
+    Status: Conditionally useful'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-082
+  type: basic
+  front: What file extension is used for Node ID Translation?
+  back: '`.trans`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-083
+  type: basic
+  front: What is VG Protobuf Index?
+  back: 'Index over a sorted VG Protobuf file
+
+    Extension: `.vgi`
+
+    Status: Experimental'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-084
+  type: basic
+  front: What file extension is used for VG Protobuf Index?
+  back: '`.vgi`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-085
+  type: basic
+  front: What is [[GAM Index\?
+  back: 'File-Formats#gamindex-an-on-disk-index-for-gam]]
+
+    Extension: Index over a sorted GAM Protobuf file
+
+    Status: `.gai`, `.gam.index`
+
+    Notes: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: intermediate
+  source: vg.wiki/File-Types.md
+- id: ft-086
+  type: basic
+  front: What file extension is used for [[GAM Index\?
+  back: Index over a sorted GAM Protobuf file
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-087
+  type: basic
+  front: What is FASTA Index?
+  back: 'Index over a FASTA file for random access
+
+    Extension: `.fai`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-088
+  type: basic
+  front: What file extension is used for FASTA Index?
+  back: '`.fai`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-089
+  type: basic
+  front: What is BAM Index?
+  back: 'Index over a sorted BAM file for random access
+
+    Extension: `.bai`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-090
+  type: basic
+  front: What file extension is used for BAM Index?
+  back: '`.bai`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-091
+  type: basic
+  front: What is Tabix VCF Index?
+  back: 'Index over a sorted, compressed VCF file for random access
+
+    Extension: `.tbi`
+
+    Status: Recommended'
+  tags:
+  - file-types
+  - miscellaneous-formats
+  difficulty: beginner
+  source: vg.wiki/File-Types.md
+- id: ft-092
+  type: basic
+  front: What file extension is used for Tabix VCF Index?
+  back: '`.tbi`'
+  tags:
+  - file-types
+  - extensions
+  difficulty: beginner
+  source: vg.wiki/File-Types.md

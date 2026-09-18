@@ -1,0 +1,95 @@
+deck: vg-jargon::wiki::giraffe
+description: Giraffe best practices and gotchas
+source_repo: vg.wiki
+cards:
+- id: gbp-001
+  type: basic
+  front: What indexes does Giraffe require?
+  back: '1. GBZ graph (contains GBWT + GBWTGraph)
+
+    2. Distance index (.dist)
+
+    3. Minimizer index (.withzip.min)
+
+    4. Zipcodes file (.zipcodes)'
+  tags:
+  - giraffe
+  - indexes
+  - requirements
+  difficulty: beginner
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-002
+  type: basic
+  front: Why should the distance index be read-only in HPC environments?
+  back: As of vg 1.48.0, the distance index is memory-mapped in read+write mode by
+    default. Multiple nodes accessing the same file causes conflicts. Make it read-only
+    or use local copies.
+  tags:
+  - giraffe
+  - hpc
+  - gotcha
+  difficulty: advanced
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-003
+  type: basic
+  front: What graph structures does Giraffe prefer?
+  back: 'Graphs that avoid complex structures at every level: low-degree nodes, no
+    collapsed repetitive regions, no long-distance edges. Minimize sequence duplication.'
+  tags:
+  - giraffe
+  - graphs
+  - best-practice
+  difficulty: intermediate
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-004
+  type: basic
+  front: How do you specify index files explicitly in Giraffe?
+  back: '-Z / --gbz-name: GBZ graph
+
+    -d / --dist-name: distance index
+
+    -m / --minimizer-name: minimizer index
+
+    -z / --zipcode-name: zipcodes file'
+  tags:
+  - giraffe
+  - commands
+  - flags
+  difficulty: intermediate
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-005
+  type: basic
+  front: What happens if you don't provide zipcode annotations to Giraffe?
+  back: Mapping speed will be slow. Always build the minimizer index with -d (distance
+    index) and -z (zipcode output) options.
+  tags:
+  - giraffe
+  - performance
+  - gotcha
+  difficulty: intermediate
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-006
+  type: basic
+  front: Difference between short-read and long-read Giraffe indexes?
+  back: 'Different k values for minimizers.
+
+    Short read: .shortread.zipcodes, .shortread.withzip.min
+
+    Long read: .longread.zipcodes, .longread.withzip.min'
+  tags:
+  - giraffe
+  - short-read
+  - long-read
+  difficulty: intermediate
+  source: vg.wiki/Giraffe-best-practices.md
+- id: gbp-007
+  type: basic
+  front: What is the easiest way to build all Giraffe indexes?
+  back: '`vg autoindex` - automatically builds GBZ, distance index, minimizer index,
+    and zipcodes from input FASTA + VCF.'
+  tags:
+  - giraffe
+  - commands
+  - autoindex
+  difficulty: beginner
+  source: vg.wiki/Giraffe-best-practices.md

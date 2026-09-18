@@ -1,0 +1,86 @@
+deck: vg-jargon::data_structures
+description: Distance index and snarl tree structures
+source_repo: libbdsg
+
+cards:
+  - id: dist-001
+    type: basic
+    front: What does the distance index store?
+    back: |
+      A hierarchical snarl decomposition of the graph that enables
+      fast computation of shortest distances between any two positions.
+    tags: [index, snarl, distance]
+    source: libbdsg/snarl_distance_index.hpp
+    difficulty: beginner
+
+  - id: dist-002
+    type: cloze
+    text: |
+      Distance index is built with {{c1::vg index -j}}
+      and stored in {{c2::.dist}} files.
+    tags: [index, commands, files]
+    difficulty: beginner
+
+  - id: dist-003
+    type: basic
+    front: What is a snarl?
+    back: |
+      A subgraph with exactly two boundary nodes (start and end) where
+      all paths entering through start must exit through end, and vice versa.
+      Represents a "bubble" or variant site in the graph.
+    tags: [snarl, theory, structure]
+    source: vg.wiki/Snarls-and-chains.md
+    difficulty: intermediate
+
+  - id: dist-004
+    type: basic
+    front: What is a chain in the snarl tree?
+    back: |
+      A sequence of snarls connected end-to-end, where the end node
+      of one snarl is the start node of the next. Chains alternate
+      with snarls in the hierarchy.
+    tags: [snarl, chain, structure]
+    source: vg.wiki/Snarls-and-chains.md
+    difficulty: intermediate
+
+  - id: dist-005
+    type: basic
+    front: What is the snarl tree hierarchy (top to bottom)?
+    back: |
+      1. Root (contains entire graph)
+      2. Chains (sequences of connected snarls)
+      3. Snarls (bubble structures)
+      4. Nodes (leaf level)
+
+      Chains contain snarls, snarls contain chains or nodes.
+    tags: [snarl, hierarchy, structure]
+    difficulty: intermediate
+
+  - id: dist-006
+    type: basic
+    front: Why does Giraffe need the distance index?
+    back: |
+      For clustering seeds. After finding minimizer hits, Giraffe
+      groups nearby seeds using distance queries to identify
+      candidate alignment regions.
+    tags: [giraffe, clustering, algorithm]
+    difficulty: intermediate
+
+  - id: dist-007
+    type: cloze
+    text: |
+      The distance index is {{c1::memory-mapped}} by default.
+      In HPC environments, make it {{c2::read-only}} to avoid conflicts.
+    tags: [index, hpc, gotcha]
+    difficulty: advanced
+
+  - id: dist-008
+    type: basic
+    front: What are zipcodes in the context of distance index?
+    back: |
+      Compressed distance annotations stored with minimizer positions.
+      Enable faster distance lookups by caching hierarchical snarl
+      information at each position.
+    tags: [index, zipcode, minimizer]
+    source: vg.wiki/Giraffe-best-practices.md
+    difficulty: advanced

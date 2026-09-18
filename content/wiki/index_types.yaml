@@ -1,0 +1,190 @@
+deck: vg-jargon::wiki::index-types
+description: Index types and build commands
+source_repo: vg.wiki
+cards:
+- id: idx-001
+  type: basic
+  front: What is the XG index?
+  back: 'XG is a space-efficient immutable graph. It is typically used in **mappers**
+    and other applications that do not modify the graph. Multiple graphs can be combined
+    into a single XG index with `vg index -x`. By default, the variants (alt paths)
+    created with `vg construct -a` are not stored as paths in the XG index. They can
+    be included with option `-L`. A single graph can be converted into XG format with
+    `vg convert -x`.
+
+
+    Extension: `.xg`'
+  tags:
+  - index
+  - xg
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-002
+  type: basic
+  front: What is the GBWTGraph / GBZ index?
+  back: 'GBWTGraph is an immutable graph induced by the paths stored in an GBWT index.
+    It uses the GBWT for graph topology and stores the sequences in the graph itself.
+    Nodes and edges of the original graph not used on any GBWT path are not included
+    in the GBWTGraph. Because any changes to the GBWT index make the GBWTGraph invalid,
+    **standalone GBWTGraph files are no longer supported**.
+
+
+    Extension: `.gbz`
+
+    Build command: `vg gbwt -g`'
+  tags:
+  - index
+  - gbwtgraph---gbz
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-003
+  type: basic
+  front: How do you build a GBWTGraph / GBZ index?
+  back: '`vg gbwt -g`'
+  tags:
+  - index
+  - commands
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-004
+  type: basic
+  front: What is the GCSA index?
+  back: 'GCSA (sometimes called GCSA2) is an FM-index of a pruned de Bruijn graph
+    that approximates the original graph. Queries up to a certain length (typically
+    256 bp) map perfectly to the original graph (or its subgraph if the graph was
+    complex and had to be pruned). Longer queries may yield false positives. In most
+    applications, **GCSA also needs the LCP array** for additional functionality.
+    A GCSA index can be built with `vg index -g`. The inputs are typically pruned
+    single-chromosome graphs.
+
+
+    Extension: `.gcsa`
+
+    Build command: `vg index -g`'
+  tags:
+  - index
+  - gcsa
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-005
+  type: basic
+  front: How do you build a GCSA index?
+  back: '`vg index -g`'
+  tags:
+  - index
+  - commands
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-006
+  type: basic
+  front: What is the GBWT index?
+  back: 'The GBWT is an FM-index that stores similar paths space-efficiently. In most
+    applications, it is used for storing (real or artificial) **haplotypes**. A GBWT
+    index may also contain metadata with structured (sample, contig, haplotype, fragment)
+    names for each path. Paths with sample name `_gbwt_ref` are often interpreted
+    as generic paths.
+
+
+    Extension: `.gbwt`'
+  tags:
+  - index
+  - gbwt
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-007
+  type: basic
+  front: What is the Distance index index?
+  back: 'A distance index stores a hierarchical snarl decomposition of the graph and
+    uses it for computing shortest distances between positions in the graph. The index
+    is built with `vg index -j`.
+
+
+    Extension: `.dist`
+
+    Build command: `vg index -j`'
+  tags:
+  - index
+  - distance-index
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-008
+  type: basic
+  front: How do you build a Distance index index?
+  back: '`vg index -j`'
+  tags:
+  - index
+  - commands
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-009
+  type: basic
+  front: What is the Zipcodes file index?
+  back: 'A zipcodes file stores "zipcode" information for seed kmers in the graph,
+    when that information is too long to embed directly in the minimizer index (see
+    below). The zipcodes file is built with `vg minimizer` at the same time as the
+    minimizer index, by using the `-z`/`--zipcode-name` option.
+
+
+    Extension: `.zipcodes`
+
+    Build command: `vg minimizer`'
+  tags:
+  - index
+  - zipcodes-file
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-010
+  type: basic
+  front: How do you build a Zipcodes file index?
+  back: '`vg minimizer`'
+  tags:
+  - index
+  - commands
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-011
+  type: basic
+  front: What is the Minimizer index index?
+  back: 'A minimizer index stores a subset of kmers from the haplotypes and the corresponding
+    graph positions in a hash table. The positions must be annotated with distance
+    information for faster distance index queries. Minimizer indexes are built with
+    `vg minimizer`. The construction requires a GBZ graph.
+
+
+    Extension: `.withzip.min`
+
+    Build command: `vg minimizer`'
+  tags:
+  - index
+  - minimizer-index
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-012
+  type: basic
+  front: How do you build a Minimizer index index?
+  back: '`vg minimizer`'
+  tags:
+  - index
+  - commands
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-013
+  type: basic
+  front: What is the `vg map` and `vg mpmap` index?
+  back: The `vg map` and `vg mpmap` workflows require a graph (usually XG index) and
+    a GCSA index with the LCP array. They may also uses a GBWT index with haplotypes
+    for (potentially) more accurate alignment scores.
+  tags:
+  - index
+  - '`vg-map`-and-`vg-mpmap`'
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md
+- id: idx-014
+  type: basic
+  front: What is the `vg giraffe` index?
+  back: 'Giraffe requires the following indexes:'
+  tags:
+  - index
+  - '`vg-giraffe`'
+  difficulty: intermediate
+  source: vg.wiki/Index-Types.md

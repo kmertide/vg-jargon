@@ -1,0 +1,69 @@
+deck: vg-jargon::data_structures
+description: GBZ graph format and GBWT
+source_repo: vg
+
+cards:
+  - id: gbz-001
+    type: basic
+    front: What is GBZ?
+    back: |
+      A compressed graph format that combines:
+      - Graph topology (nodes + edges)
+      - GBWT (haplotype paths)
+      - Reference path metadata
+
+      The primary graph format for Giraffe.
+    tags: [format, graph, gbwt]
+    difficulty: beginner
+
+  - id: gbz-002
+    type: basic
+    front: What is GBWT?
+    back: |
+      Graph Burrows-Wheeler Transform. A compressed representation
+      of haplotype paths through the graph. Enables efficient
+      haplotype-aware operations.
+    tags: [gbwt, compression, haplotype]
+    difficulty: intermediate
+
+  - id: gbz-003
+    type: cloze
+    text: |
+      GBZ files use extension {{c1::.gbz}} and can be built with
+      {{c2::vg gbwt}} or {{c3::vg autoindex}}.
+    tags: [format, commands, files]
+    difficulty: beginner
+
+  - id: gbz-004
+    type: basic
+    front: What graph formats can vg read?
+    back: |
+      - `.vg` - Original protobuf format (mutable, large)
+      - `.xg` - XG index (immutable, fast random access)
+      - `.gbz` - GBZ format (immutable, haplotype-aware)
+      - `.gfa` - GFA text format (interchange)
+      - `.pg` - PackedGraph (mutable, compact)
+    tags: [format, graph, files]
+    difficulty: beginner
+
+  - id: gbz-005
+    type: basic
+    front: Why prefer GBZ over XG for Giraffe?
+    back: |
+      GBZ includes GBWT haplotypes, enabling:
+      - Haplotype-consistent alignment
+      - Better scoring with haplotype information
+      - Smaller file size with path compression
+    tags: [gbz, xg, giraffe, comparison]
+    difficulty: intermediate
+
+  - id: gbz-006
+    type: basic
+    front: What is a GBWTGraph?
+    back: |
+      A HandleGraph implementation backed by GBWT.
+      Nodes and edges are derived from the haplotype paths.
+      Memory-efficient for graphs with many haplotypes.
+    tags: [gbwt, interface, implementation]
+    source: libhandlegraph
+    difficulty: advanced

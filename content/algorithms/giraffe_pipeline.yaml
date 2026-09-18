@@ -1,0 +1,85 @@
+deck: vg-jargon::algorithms
+description: Giraffe read mapping pipeline
+source_repo: vg
+
+cards:
+  - id: gir-001
+    type: basic
+    front: What are the main stages of the Giraffe pipeline?
+    back: |
+      1. **Seeding** - Find minimizer hits in the graph
+      2. **Clustering** - Group nearby seeds by distance
+      3. **Chain finding** - Order seeds into collinear chains
+      4. **Alignment** - Extend chains to full alignments
+      5. **Scoring** - Select best alignment(s)
+    tags: [giraffe, pipeline, overview]
+    difficulty: beginner
+
+  - id: gir-002
+    type: basic
+    front: What is seeding in Giraffe?
+    back: |
+      Finding minimizer matches between the read and the graph.
+      Minimizers are sampled k-mers that represent the read.
+      Each hit gives a (read_pos, graph_pos) pair.
+    tags: [giraffe, seeding, minimizer]
+    difficulty: intermediate
+
+  - id: gir-003
+    type: basic
+    front: What is a minimizer?
+    back: |
+      The lexicographically smallest k-mer in a window of w k-mers.
+      Provides a sparse but representative sample of k-mers.
+      Reduces index size while maintaining sensitivity.
+    tags: [minimizer, seeding, index]
+    difficulty: intermediate
+
+  - id: gir-004
+    type: basic
+    front: How does Giraffe cluster seeds?
+    back: |
+      Uses the distance index to compute pairwise distances
+      between seed positions. Seeds within a distance threshold
+      are grouped into the same cluster.
+    tags: [giraffe, clustering, distance]
+    difficulty: intermediate
+
+  - id: gir-005
+    type: basic
+    front: What is chaining in Giraffe?
+    back: |
+      Finding the best ordered subset of seeds in a cluster
+      that could come from a single alignment. Uses dynamic
+      programming on seed positions.
+    tags: [giraffe, chaining, algorithm]
+    difficulty: advanced
+
+  - id: gir-006
+    type: cloze
+    text: |
+      Giraffe requires: a {{c1::GBZ}} graph, a {{c2::distance}} index,
+      a {{c3::minimizer}} index, and a {{c4::zipcodes}} file.
+    tags: [giraffe, requirements, files]
+    difficulty: beginner
+
+  - id: gir-007
+    type: basic
+    front: What aligner does Giraffe use for extension?
+    back: |
+      WFA (Wavefront Alignment) via the WFA2-lib.
+      A fast exact algorithm for edit distance alignment.
+      Extends chains to full read alignments.
+    tags: [giraffe, alignment, wfa]
+    source: vgteam/WFA2-lib
+    difficulty: advanced
+
+  - id: gir-008
+    type: basic
+    front: Short reads vs long reads in Giraffe - key difference?
+    back: |
+      **Short reads**: Single chain usually sufficient
+      **Long reads**: May need multiple chains stitched together,
+      uses different chaining parameters, produces GAF output.
+    tags: [giraffe, short-read, long-read]
+    difficulty: intermediate

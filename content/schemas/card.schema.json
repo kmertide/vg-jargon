@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VG Jargon Flashcard",
+  "type": "object",
+  "required": ["id", "type", "tags"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]+-[0-9]{3}$",
+      "description": "Unique card identifier (e.g., dist-001)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["basic", "cloze", "reverse"],
+      "description": "Card type"
+    },
+    "front": {
+      "type": "string",
+      "description": "Question (for basic/reverse cards)"
+    },
+    "back": {
+      "type": "string",
+      "description": "Answer (for basic/reverse cards)"
+    },
+    "text": {
+      "type": "string",
+      "description": "Cloze deletion text with {{c1::answer}} syntax"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Categorization tags"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source file reference"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "default": "intermediate"
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "basic" } } },
+      "then": { "required": ["front", "back"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "cloze" } } },
+      "then": { "required": ["text"] }
+    }
+  ]
+}
