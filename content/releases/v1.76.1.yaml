@@ -1,0 +1,25 @@
+deck: vg-jargon::releases::v1.76.1
+description: Notable changes in vg v1.76.1
+source_repo: vg
+
+cards:
+  - id: rel-001
+    type: basic
+    front: What changes were made to the elftools submodule in vg v1.76.1?
+    back: Revert back to elftools submodule (instead of system install) in order to fix static build.
+    tags: [release, v1.76.1]
+    difficulty: intermediate
+
+  - id: rel-002
+    type: basic
+    front: How are gref vcfs compatible with vcfbub in vg v1.76.1?
+    back: gref vcfs now compatible with vcfbub via fixed LV symantics.
+    tags: [release, v1.76.1]
+    difficulty: intermediate
+
+  - id: rel-003
+    type: basic
+    front: What was omitted from VCF headers in vg v1.76.1?
+    back: Unused contigs omitted from VCF headers.
+    tags: [release, v1.76.1]
+    difficulty: intermediate
