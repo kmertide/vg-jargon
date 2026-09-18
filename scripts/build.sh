@@ -8,6 +8,10 @@ PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
 echo "=== vg-jargon build ==="
 
+# Stage any new vg release notes for card drafting (non-fatal if offline)
+echo "Checking for new vg release notes..."
+python3 scripts/extract_from_release_notes.py || echo "Skipping release-notes check (see above)"
+
 # Generate cards.json
 echo "Generating cards.json..."
 cd "$PROJECT_DIR"
