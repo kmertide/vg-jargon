@@ -49,8 +49,29 @@ def fetch_releases() -> list[dict]:
         return []
 
 
+def cleanup_stale_drafts() -> int:
+    """Remove draft.md files whose cards have already been drafted.
+
+    Card drafting (e.g. via Aider) sometimes finishes the .yaml but doesn't
+    reliably execute its own cleanup shell command, so this does it
+    deterministically instead of depending on model output.
+    """
+    removed = 0
+    for draft_file in RELEASES_DIR.glob("*.draft.md"):
+        stem = draft_file.name[: -len(".draft.md")]
+        card_file = RELEASES_DIR / f"{stem}.yaml"
+        if card_file.exists():
+            draft_file.unlink()
+            print(f"Removed stale {draft_file.relative_to(PROJECT_DIR)} "
+                  f"(already drafted as {card_file.name})")
+            removed += 1
+    return removed
+
+
 def main():
     RELEASES_DIR.mkdir(parents=True, exist_ok=True)
+
+    cleanup_stale_drafts()
 
     releases = fetch_releases()
     if not releases:

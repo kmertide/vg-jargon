@@ -1,18 +1,55 @@
 {
   "version": "1.0.0",
-  "generated": "2026-09-18T14:35:51.805046",
-  "card_count": 187,
+  "generated": "2026-09-18T15:33:21.468410",
+  "card_count": 190,
   "decks": [
-    "vg-jargon::algorithms",
-    "vg-jargon::data_structures",
-    "vg-jargon::wiki::giraffe",
-    "vg-jargon::releases::v1.77.0",
+    "vg-jargon::releases::v1.76.1",
     "vg-jargon::wiki::file-types",
-    "vg-jargon::wiki::index-types",
     "vg-jargon::interfaces",
-    "vg-jargon::wiki::snarls"
+    "vg-jargon::wiki::giraffe",
+    "vg-jargon::data_structures",
+    "vg-jargon::releases::v1.77.0",
+    "vg-jargon::algorithms",
+    "vg-jargon::wiki::snarls",
+    "vg-jargon::wiki::index-types"
   ],
   "cards": [
+    {
+      "id": "rel-001",
+      "deck": "vg-jargon::releases::v1.76.1",
+      "tags": [
+        "release",
+        "v1.76.1"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What changes were made to the elftools submodule in vg v1.76.1?",
+      "back": "Revert back to elftools submodule (instead of system install) in order to fix static build."
+    },
+    {
+      "id": "rel-002",
+      "deck": "vg-jargon::releases::v1.76.1",
+      "tags": [
+        "release",
+        "v1.76.1"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "How are gref vcfs compatible with vcfbub in vg v1.76.1?",
+      "back": "gref vcfs now compatible with vcfbub via fixed LV symantics."
+    },
+    {
+      "id": "rel-003",
+      "deck": "vg-jargon::releases::v1.76.1",
+      "tags": [
+        "release",
+        "v1.76.1"
+      ],
+      "difficulty": "intermediate",
+      "source": "",
+      "front": "What was omitted from VCF headers in vg v1.76.1?",
+      "back": "Unused contigs omitted from VCF headers."
+    },
     {
       "id": "rel-001",
       "deck": "vg-jargon::releases::v1.77.0",
