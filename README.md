@@ -8,6 +8,10 @@ menu-bar widget, an Anki deck, and portable JSON.
 Currently: **190 cards** across interfaces, data structures, algorithms, wiki concepts,
 and per-release changelogs.
 
+<p align="center">
+  <img src="docs/widget-screenshot.png" alt="VGJargon macOS widget showing a flashcard about the distance index" width="325">
+</p>
+
 ## Quickstart
 
 ```bash
