@@ -31,16 +31,25 @@ class CardStore: ObservableObject {
     }
 
     func loadCards() {
-        // Try loading from various paths
-        let possiblePaths = [
-            // Widget directory
-            "/Users/apblair/Desktop/vg-cheatsheet/vg-jargon/widget/cards.json",
-            // Relative paths
-            "../cards.json",
-            "cards.json",
-        ]
+        // Primary: the bundled resource (Sources/Resources/cards.json), which
+        // works regardless of the process's current working directory - this
+        // is what makes `swift run` work from any directory, and what a
+        // packaged .app would use.
+        if let bundleURL = Bundle.module.url(forResource: "cards", withExtension: "json"),
+           let data = try? Data(contentsOf: bundleURL) {
+            do {
+                let database = try JSONDecoder().decode(CardDatabase.self, from: data)
+                self.cards = database.cards
+                print("Loaded \(cards.count) cards from bundle resource")
+                return
+            } catch {
+                print("Failed to decode bundled cards.json: \(error)")
+            }
+        }
 
-        for path in possiblePaths {
+        // Fallback for local development when run via `swift run` from the
+        // repo (in case the bundled resource is stale or missing).
+        for path in ["../cards.json", "cards.json"] {
             let url = URL(fileURLWithPath: path)
             if let data = try? Data(contentsOf: url) {
                 do {
@@ -54,7 +63,7 @@ class CardStore: ObservableObject {
             }
         }
 
-        // Load sample cards if no JSON found
+        // Last resort so the UI has something to show.
         loadSampleCards()
     }
 
