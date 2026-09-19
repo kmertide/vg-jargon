@@ -101,22 +101,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let window = window else { return }
         let frame = window.frame
 
+        let newFrame: NSRect
         if expanded {
-            let newFrame = NSRect(
-                x: frame.origin.x - 95,
-                y: frame.origin.y - 360,
-                width: 300,
-                height: 450
-            )
-            window.setFrame(newFrame, display: true, animate: true)
+            newFrame = NSRect(x: frame.origin.x - 95, y: frame.origin.y - 360, width: 300, height: 450)
         } else {
-            let newFrame = NSRect(
-                x: frame.origin.x + 95,
-                y: frame.origin.y + 360,
-                width: 110,
-                height: 90
-            )
-            window.setFrame(newFrame, display: true, animate: true)
+            newFrame = NSRect(x: frame.origin.x + 95, y: frame.origin.y + 360, width: 110, height: 90)
+        }
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            // Slight overshoot for a spring-like feel (NSWindow frame animation
+            // has no native spring API, so this approximates one).
+            context.timingFunction = CAMediaTimingFunction(controlPoints: 0.34, 1.56, 0.64, 1.0)
+            window.animator().setFrame(newFrame, display: true)
         }
     }
 }
@@ -213,6 +210,35 @@ class WidgetViewModel: ObservableObject {
     }
 }
 
+// MARK: - Hoverable Icon Button
+
+struct HoverIconButton: View {
+    let systemName: String
+    let size: CGFloat
+    let color: Color
+    let action: () -> Void
+    @State private var isHovering = false
+
+    init(_ systemName: String, size: CGFloat = 14, color: Color = .white.opacity(0.75), action: @escaping () -> Void) {
+        self.systemName = systemName
+        self.size = size
+        self.color = color
+        self.action = action
+    }
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: systemName)
+                .font(.system(size: size))
+                .foregroundColor(isHovering ? .white : color)
+        }
+        .buttonStyle(.plain)
+        .scaleEffect(isHovering ? 1.18 : 1.0)
+        .animation(.easeOut(duration: 0.15), value: isHovering)
+        .onHover { isHovering = $0 }
+    }
+}
+
 // MARK: - VGJargon Widget (Modern Bioinformatics Theme)
 
 struct VGJargonWidget: View {
@@ -252,7 +278,7 @@ struct VGBadgeView: View {
                             lineWidth: 3
                         )
                 )
-                .shadow(color: Color(hex: "FFD700").opacity(0.4), radius: 8)
+                .shadow(color: Color(hex: "FFD700").opacity(0.4), radius: 2)
 
             VStack(spacing: 3) {
                 HStack(spacing: 3) {
@@ -298,15 +324,32 @@ struct VGExpandedView: View {
     @State private var showingStats = false
     @State private var isShowingAnswer = false
 
+    var goalExceeded: Bool {
+        progress.dailyGoal > 0 && progress.cardsReviewedToday > progress.dailyGoal
+    }
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(NSColor.windowBackgroundColor))
+                .fill(
+                    LinearGradient(
+                        colors: [Color(hex: "0d0d14"), Color.black],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(Color(hex: "FFD700").opacity(0.3), lineWidth: 1)
+                        .stroke(
+                            LinearGradient(
+                                colors: [Color(hex: "FFD700"), Color(hex: "DAA520"), Color(hex: "B8860B")],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 2
+                        )
                 )
-                .shadow(color: .black.opacity(0.3), radius: 15, y: 5)
+                .shadow(color: .black.opacity(0.35), radius: 3, y: 2)
 
             VStack(spacing: 0) {
                 // Header
@@ -324,30 +367,21 @@ struct VGExpandedView: View {
                             .foregroundColor(Color(hex: "FFD700"))
                         Text("\(progress.totalXP) XP")
                             .font(.system(size: 9))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.6))
                     }
 
-                    Button(action: { showingStats.toggle() }) {
-                        Image(systemName: showingStats ? "rectangle.stack" : "chart.pie")
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
+                    HoverIconButton(showingStats ? "rectangle.stack" : "chart.pie") {
+                        showingStats.toggle()
                     }
-                    .buttonStyle(.plain)
                     .padding(.leading, 8)
 
-                    Button(action: { AppDelegate.shared?.toggleCalendarWindow() }) {
-                        Image(systemName: "calendar")
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
+                    HoverIconButton("calendar") {
+                        AppDelegate.shared?.toggleCalendarWindow()
                     }
-                    .buttonStyle(.plain)
 
-                    Button(action: { viewModel.toggle() }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 16))
-                            .foregroundColor(.secondary)
+                    HoverIconButton("xmark.circle.fill", size: 16) {
+                        viewModel.toggle()
                     }
-                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 12)
                 .padding(.top, 8)
@@ -357,18 +391,27 @@ struct VGExpandedView: View {
                     HStack {
                         Text("Daily Goal")
                             .font(.system(size: 9))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.6))
                         Spacer()
-                        Text("\(progress.cardsReviewedToday)/\(progress.dailyGoal)")
-                            .font(.system(size: 9, weight: .medium))
-                            .foregroundColor(.secondary)
+                        HStack(spacing: 3) {
+                            Text("\(progress.cardsReviewedToday)/\(progress.dailyGoal)")
+                            if goalExceeded {
+                                Image(systemName: "checkmark.seal.fill")
+                            }
+                        }
+                        .font(.system(size: 9, weight: .medium))
+                        .foregroundColor(goalExceeded ? Color(hex: "FFD700") : .white.opacity(0.6))
                     }
                     GeometryReader { geo in
                         ZStack(alignment: .leading) {
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(Color.gray.opacity(0.2))
+                                .fill(Color.white.opacity(0.12))
                             RoundedRectangle(cornerRadius: 3)
-                                .fill(Color(hex: "4CAF50"))
+                                .fill(
+                                    goalExceeded
+                                        ? AnyShapeStyle(LinearGradient(colors: [Color(hex: "FFD700"), Color(hex: "DAA520")], startPoint: .leading, endPoint: .trailing))
+                                        : AnyShapeStyle(Color(hex: "4CAF50"))
+                                )
                                 .frame(width: geo.size.width * min(1.0, Double(progress.cardsReviewedToday) / Double(progress.dailyGoal)))
                         }
                     }
@@ -377,7 +420,7 @@ struct VGExpandedView: View {
                 .padding(.horizontal, 12)
                 .padding(.top, 6)
 
-                Divider().padding(.top, 8)
+                Divider().padding(.top, 8).background(Color.white.opacity(0.15))
 
                 if showingStats {
                     StatsView(progress: progress)
@@ -392,6 +435,24 @@ struct VGExpandedView: View {
 
 // MARK: - Card Review View with Confidence Buttons
 
+private struct FlipDownModifier: ViewModifier {
+    let angle: Double
+    func body(content: Content) -> some View {
+        content
+            .rotation3DEffect(.degrees(angle), axis: (x: 1, y: 0, z: 0), anchor: .top, perspective: 0.4)
+            .opacity(angle == 0 ? 1 : 0)
+    }
+}
+
+private extension AnyTransition {
+    static var flipDown: AnyTransition {
+        .asymmetric(
+            insertion: .modifier(active: FlipDownModifier(angle: -80), identity: FlipDownModifier(angle: 0)),
+            removal: .opacity
+        )
+    }
+}
+
 struct CardReviewView: View {
     @ObservedObject var store: CardStore
     @ObservedObject var progress: UserProgress
@@ -404,24 +465,26 @@ struct CardReviewView: View {
                     VStack(alignment: .leading, spacing: 12) {
                         Text(card.front)
                             .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.primary)
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
 
                         if isShowingAnswer {
-                            Divider()
+                            VStack(alignment: .leading, spacing: 12) {
+                                Divider().background(Color.white.opacity(0.15))
 
-                            Text(card.back)
-                                .font(.system(size: 13))
-                                .foregroundColor(.secondary)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .textSelection(.enabled)
+                                Text(card.back)
+                                    .font(.system(size: 13))
+                                    .foregroundColor(.white.opacity(0.75))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .textSelection(.enabled)
 
-                            if !card.source.isEmpty {
-                                Text(card.source)
-                                    .font(.system(size: 10))
-                                    .foregroundColor(.secondary.opacity(0.6))
-                                    .padding(.top, 4)
+                                if !card.source.isEmpty {
+                                    Text(card.source)
+                                        .font(.system(size: 10))
+                                        .foregroundColor(.white.opacity(0.4))
+                                }
                             }
+                            .transition(.flipDown)
                         }
                     }
                     .padding(12)
@@ -435,7 +498,7 @@ struct CardReviewView: View {
                     VStack(spacing: 8) {
                         Text("How well did you know this?")
                             .font(.system(size: 11))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.white.opacity(0.6))
 
                         HStack(spacing: 8) {
                             ConfidenceButton(label: "Again", color: Color(hex: "F44336"), minutes: "1m") {
@@ -454,14 +517,21 @@ struct CardReviewView: View {
                     }
                     .padding(.horizontal, 12)
                     .padding(.bottom, 8)
+                    .transition(.opacity)
                 } else {
-                    Button(action: { isShowingAnswer = true }) {
+                    Button(action: {
+                        withAnimation(.spring(response: 0.45, dampingFraction: 0.75)) {
+                            isShowingAnswer = true
+                        }
+                    }) {
                         Text("Show Answer")
                             .font(.system(size: 13, weight: .medium))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 12)
-                            .background(Color(hex: "2d8a3e"))
+                            .background(
+                                LinearGradient(colors: [Color(hex: "2d8a3e"), Color(hex: "1f6b2c")], startPoint: .top, endPoint: .bottom)
+                            )
                             .cornerRadius(10)
                     }
                     .buttonStyle(.plain)
@@ -469,38 +539,35 @@ struct CardReviewView: View {
                     .padding(.bottom, 8)
                 }
 
-                Divider()
+                Divider().background(Color.white.opacity(0.15))
 
                 // Navigation
                 HStack {
-                    Button(action: { store.previousCard(); isShowingAnswer = false }) {
-                        Image(systemName: "chevron.left")
+                    HoverIconButton("chevron.left") {
+                        store.previousCard(); isShowingAnswer = false
                     }
-                    .buttonStyle(.plain)
 
                     Spacer()
 
                     Text("\(store.currentIndex + 1)/\(store.filteredCards.count)")
                         .font(.system(size: 11, design: .monospaced))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.white.opacity(0.6))
 
                     Spacer()
 
-                    Button(action: { store.randomCard(); isShowingAnswer = false }) {
-                        Image(systemName: "shuffle")
+                    HoverIconButton("shuffle") {
+                        store.randomCard(); isShowingAnswer = false
                     }
-                    .buttonStyle(.plain)
 
-                    Button(action: { store.nextCard(); isShowingAnswer = false }) {
-                        Image(systemName: "chevron.right")
+                    HoverIconButton("chevron.right") {
+                        store.nextCard(); isShowingAnswer = false
                     }
-                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
             } else {
                 Text("No cards")
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.white.opacity(0.6))
             }
         }
     }
@@ -517,23 +584,34 @@ struct ConfidenceButton: View {
     let color: Color
     let minutes: String
     let action: () -> Void
+    @State private var isHovering = false
 
     var body: some View {
         Button(action: action) {
             VStack(spacing: 2) {
                 Text(label)
-                    .font(.system(size: 10, weight: .medium))
+                    .font(.system(size: 10, weight: .semibold))
                 Text(minutes)
                     .font(.system(size: 8))
-                    .opacity(0.7)
+                    .opacity(0.75)
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 8)
-            .background(color)
-            .cornerRadius(8)
+            .padding(.vertical, 9)
+            .background(
+                LinearGradient(colors: [color, color.opacity(0.75)], startPoint: .top, endPoint: .bottom)
+            )
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(hex: "FFD700").opacity(isHovering ? 0.6 : 0), lineWidth: 1.5)
+            )
+            .shadow(color: color.opacity(0.4), radius: isHovering ? 4 : 1, y: 1)
         }
         .buttonStyle(.plain)
+        .scaleEffect(isHovering ? 1.04 : 1.0)
+        .animation(.easeOut(duration: 0.12), value: isHovering)
+        .onHover { isHovering = $0 }
     }
 }
 
