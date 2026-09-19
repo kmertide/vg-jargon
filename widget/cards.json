@@ -1,17 +1,17 @@
 {
   "version": "1.0.0",
-  "generated": "2026-09-18T15:33:21.468410",
+  "generated": "2026-09-18T16:56:13.548770",
   "card_count": 190,
   "decks": [
-    "vg-jargon::releases::v1.76.1",
-    "vg-jargon::wiki::file-types",
     "vg-jargon::interfaces",
+    "vg-jargon::wiki::index-types",
     "vg-jargon::wiki::giraffe",
+    "vg-jargon::wiki::snarls",
     "vg-jargon::data_structures",
     "vg-jargon::releases::v1.77.0",
     "vg-jargon::algorithms",
-    "vg-jargon::wiki::snarls",
-    "vg-jargon::wiki::index-types"
+    "vg-jargon::releases::v1.76.1",
+    "vg-jargon::wiki::file-types"
   ],
   "cards": [
     {
